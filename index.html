@@ -1352,8 +1352,63 @@ document.querySelectorAll(".reveal").forEach(element => {
   observer.observe(element);
 });
 
+
 // Contact form
-document.getElementById("contactForm").addEventListener("submit", event => {
+document.getElementById("contactForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const form = event.currentTarget;
+  const submitButton = form.querySelector(".submit-button");
+
+  const name = document.getElementById("name").value.trim();
+  const organization = document.getElementById("organization").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const category = document.getElementById("category").value;
+  const message = document.getElementById("message").value.trim();
+  const agree = document.getElementById("agree").checked;
+
+  if (!name || !email || !category || !message || !agree) {
+    alert("必須項目をご確認ください。");
+    return;
+  }
+
+  const data = {
+    name,
+    organization,
+    email,
+    category,
+    message
+  };
+
+  submitButton.disabled = true;
+  submitButton.textContent = "SENDING...";
+
+  try {
+    await fetch(
+      "https://script.google.com/macros/s/AKfycby_DCb-oVGIJEFPbJJDBhnGHQ-eZkUPf_NhfUvBwnQlk11vSqmHYwan1i9mO_yGV8jNBA/exec",
+      {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify(data)
+      }
+    );
+
+    alert("送信処理を実行しました。Gmailでお問い合わせメールをご確認ください。");
+    form.reset();
+
+  } catch (error) {
+    alert("送信できませんでした。通信環境を確認して、もう一度お試しください。");
+    console.error(error);
+
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = "SEND INQUIRY　→";
+  }
+});
+
   event.preventDefault();
 
   const name = document.getElementById("name").value.trim();

@@ -712,11 +712,15 @@ img {
 /* ANIMATION */
 
 .reveal {
-  opacity: 0;
-  transform: translateY(25px);
+  opacity: 1;
+  transform: none;
   transition: opacity .8s ease, transform .8s ease;
 }
 
+.reveal.show {
+  opacity: 1;
+  transform: none;
+}
 .reveal.show {
   opacity: 1;
   transform: translateY(0);
@@ -1267,17 +1271,14 @@ img {
       </div>
 
       <label class="form-check">
-        <input type="checkbox" id="agree" required>
-        <span>入力内容を確認し、メールソフトを使用して送信することに同意します。</span>
+        <input type="checkbox" id="agree" required><span>入力内容を確認し、Aileronへの送信に同意します。</span>
       </label>
 
       <button type="submit" class="submit-button">
         SEND INQUIRY　→
       </button>
 
-      <p style="font-size:11px;color:#8995a1;text-align:center;margin-top:18px;">
-        ※現在はメールソフトを起動する方式です。サーバー経由の自動送信ではありません。
-      </p>
+      
 
     </form>
   </div>
@@ -1298,8 +1299,8 @@ img {
 
         <div class="footer-email">
           Contact :
-          <a href="mailto:haruto.9519@gmai.com">
-            haruto.9519@gmai.com
+          <a href="mailto:haruto.9519@gmail.com">
+            haruto.9519@gmail.com
           </a>
         </div>
       </div>
@@ -1372,14 +1373,6 @@ document.getElementById("contactForm").addEventListener("submit", async event =>
     return;
   }
 
-  const data = {
-    name,
-    organization,
-    email,
-    category,
-    message
-  };
-
   submitButton.disabled = true;
   submitButton.textContent = "SENDING...";
 
@@ -1392,15 +1385,21 @@ document.getElementById("contactForm").addEventListener("submit", async event =>
         headers: {
           "Content-Type": "text/plain;charset=utf-8"
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify({
+          name,
+          organization,
+          email,
+          category,
+          message
+        })
       }
     );
 
-    alert("送信処理を実行しました。Gmailでお問い合わせメールをご確認ください。");
+    alert("送信処理を実行しました。Gmailで受信をご確認ください。");
     form.reset();
 
   } catch (error) {
-    alert("送信できませんでした。通信環境を確認して、もう一度お試しください。");
+    alert("送信できませんでした。もう一度お試しください。");
     console.error(error);
 
   } finally {
@@ -1408,35 +1407,6 @@ document.getElementById("contactForm").addEventListener("submit", async event =>
     submitButton.textContent = "SEND INQUIRY　→";
   }
 });
-
-  event.preventDefault();
-
-  const name = document.getElementById("name").value.trim();
-  const organization = document.getElementById("organization").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const category = document.getElementById("category").value;
-  const message = document.getElementById("message").value.trim();
-  const agree = document.getElementById("agree").checked;
-
-  if (!name || !email || !category || !message || !agree) {
-    alert("必須項目をご確認ください。");
-    return;
-  }
-
-  const subject = encodeURIComponent("【Aileron】お問い合わせ");
-  const body = encodeURIComponent(
-    "お名前：" + name + "\n" +
-    "会社名・施設名：" + organization + "\n" +
-    "メールアドレス：" + email + "\n" +
-    "お問い合わせ種別：" + category + "\n\n" +
-    "お問い合わせ内容：\n" + message
-  );
-
-  window.location.href =
-    "mailto:haruto.9519@gmai.com?subject=" +
-    subject + "&body=" + body;
-});
 </script>
-
 </body>
 </html>

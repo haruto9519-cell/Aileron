@@ -150,13 +150,33 @@ img {
   color: var(--navy);
 }
 
-.logo span {
+.logo-image {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  line-height: 0;
+}
+
+.logo-image img {
   display: block;
-  font-size: 8px;
-  letter-spacing: 3px;
-  color: var(--muted);
-  font-weight: 400;
-  margin-top: -5px;
+  width: 164px;
+  height: 52px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.footer-brand img {
+  display: block;
+  width: 174px;
+  height: 56px;
+  object-fit: contain;
+  object-position: left center;
 }
 
 .nav-menu {
@@ -768,8 +788,14 @@ img {
     height: 70px;
   }
 
-  .logo {
-    font-size: 23px;
+  .logo-image img {
+    width: 142px;
+    height: 46px;
+  }
+
+  .footer-brand img {
+    width: 154px;
+    height: 50px;
   }
 
   .menu-button {
@@ -915,9 +941,8 @@ img {
 <!-- HEADER -->
 <header class="header">
   <div class="container nav">
-    <a href="#home" class="logo">
-      AILERON
-      <span>TRAVEL & DISCOVERY</span>
+    <a href="#home" class="logo logo-image" aria-label="Aileron ホーム">
+      <img src="./aileron-logo.png" alt="AILERON ロゴ" width="190" height="54" fetchpriority="high">
     </a>
 
     <button class="menu-button" id="menuButton"
@@ -1356,10 +1381,9 @@ img {
 
     <div class="footer-top">
       <div>
-        <div class="footer-logo">AILERON</div>
-        <div class="footer-caption en">
-          TRAVEL & DISCOVERY
-        </div>
+        <a class="footer-brand" href="#home" aria-label="Aileron トップへ戻る">
+          <img src="./aileron-logo.png" alt="AILERON ロゴ" width="190" height="54" loading="lazy">
+        </a>
 
         <div class="footer-email">
           Contact :

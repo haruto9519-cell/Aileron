@@ -13,10 +13,13 @@
 <meta name="description" content="Aileronは、旅行予算に合わせて交通手段・ホテル・食事・観光スポットを比較できるAileron Travelを運営。観光事業者向けのWeb集客・広告支援も行っています。">
 
 <meta name="robots" content="index, follow">
+<meta name="format-detection" content="telephone=no">
+<link rel="canonical" href="https://haruto9519-cell.github.io/Aileron/">
 
 <meta property="og:title" content="Aileron｜旅行比較・観光集客支援サービス">
 <meta property="og:description" content="旅行者と地域をつなぐ。旅行比較サービスと観光事業者向け集客支援を提供します。">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
 <meta property="og:url" content="https://haruto9519-cell.github.io/Aileron/">
 <meta property="og:site_name" content="Aileron">
 <meta property="og:image" content="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1200&q=85">
@@ -678,9 +681,16 @@ img {
   transition: .3s;
 }
 
-.submit-button:hover {
-  background: var(--blue);
-}
+.submit-button:hover { background: var(--blue); }
+.submit-button:disabled { opacity: .6; cursor: wait; }
+.form-status { margin: 22px auto 0; max-width: 760px; padding: 14px 16px; font-size: 13px; line-height: 1.8; background: #edf2f6; color: var(--navy); border-left: 3px solid var(--blue); }
+.form-status:empty { display: none; }
+.form-status.error { background: #fff1f0; border-left-color: #b84b45; color: #7e2823; }
+.form-note { margin-top: 18px; color: var(--muted); font-size: 11px; text-align: center; line-height: 1.8; }
+.price-contact { display:inline-block; margin-top:22px; padding:13px 22px; background:var(--navy); color:#fff; font-size:12px; letter-spacing:1px; transition:.3s; }
+.price-contact:hover { background:var(--blue); }
+:focus-visible { outline: 3px solid #8eb5d8; outline-offset: 3px; }
+@media(prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } *, *::before, *::after { animation-duration:.01ms !important; transition-duration:.01ms !important; } }
 
 /* FOOTER */
 
@@ -1222,7 +1232,7 @@ img {
     <div class="reveal">
       <table class="company-table">
         <tr>
-          <th>会社名</th>
+          <th>屋号・サービス名</th>
           <td>Aileron</td>
         </tr>
         <tr>
@@ -1230,7 +1240,7 @@ img {
           <td>竹上 大翔</td>
         </tr>
         <tr>
-          <th>設立</th>
+          <th>運営開始</th>
           <td>2026年</td>
         </tr>
         <tr>
@@ -1273,13 +1283,13 @@ img {
         <label for="name">
           お名前 <span class="required">必須</span>
         </label>
-        <input type="text" id="name" name="name"
+        <input type="text" id="name" name="name" autocomplete="name" maxlength="80"
           placeholder="例：山田 太郎" required>
       </div>
 
       <div class="form-row">
         <label for="organization">会社名・施設名</label>
-        <input type="text" id="organization" name="organization"
+        <input type="text" id="organization" name="organization" autocomplete="organization" maxlength="120"
           placeholder="例：〇〇ホテル">
       </div>
 
@@ -1287,7 +1297,7 @@ img {
         <label for="email">
           メールアドレス <span class="required">必須</span>
         </label>
-        <input type="email" id="email" name="email"
+        <input type="email" id="email" name="email" autocomplete="email" maxlength="254"
           placeholder="example@email.com" required>
       </div>
 
@@ -1311,7 +1321,7 @@ img {
         </label>
         <textarea id="message" name="message"
           placeholder="お問い合わせ内容をご入力ください。"
-          required></textarea>
+          maxlength="5000" required></textarea>
       </div>
 
       <label class="form-check">
@@ -1321,6 +1331,8 @@ img {
       <button type="submit" class="submit-button">
         SEND INQUIRY　→
       </button>
+      <p class="form-note">送信後、通常はメールでご連絡します。返信には数日いただく場合があります。<br>個人情報の取り扱いは <a href="./privacy.html" style="text-decoration:underline;">プライバシーポリシー</a> をご確認ください。</p>
+      <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
 
       
 
@@ -1413,9 +1425,13 @@ document.getElementById("contactForm").addEventListener("submit", async event =>
   const category = document.getElementById("category").value;
   const message = document.getElementById("message").value.trim();
   const agree = document.getElementById("agree").checked;
+  const status = document.getElementById("formStatus");
+  status.classList.remove("error");
+  status.textContent = "";
 
   if (!name || !email || !category || !message || !agree) {
-    alert("必須項目をご確認ください。");
+    status.classList.add("error");
+    status.textContent = "必須項目をご確認ください。";
     return;
   }
 
@@ -1441,12 +1457,13 @@ document.getElementById("contactForm").addEventListener("submit", async event =>
       }
     );
 
-    alert("送信処理を実行しました。Gmailで受信をご確認ください。");
+    status.textContent = "送信リクエストを送信しました。フォームは外部サービスを利用しているため、こちらでは受信完了を確認できません。数日以内に返信がない場合は haruto.9519@gmail.com まで直接ご連絡ください。";
     form.reset();
 
   } catch (error) {
-    alert("送信できませんでした。もう一度お試しください。");
-    console.error(error);
+    status.classList.add("error");
+    status.textContent = "送信できませんでした。時間をおいて再度お試しいただくか、haruto.9519@gmail.com まで直接ご連絡ください。";
+    console.error("Contact form submission failed:", error);
 
   } finally {
     submitButton.disabled = false;

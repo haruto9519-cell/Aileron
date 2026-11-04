@@ -358,7 +358,7 @@ img {
 
 .feature-grid {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(4,minmax(0,1fr));
   gap: 22px;
   margin-top: 60px;
 }
@@ -784,6 +784,12 @@ img {
 
 /* MOBILE */
 
+@media(max-width: 1000px) {
+  .feature-grid {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+  }
+}
+
 @media(max-width: 800px) {
   .header {
     height: 70px;
@@ -967,7 +973,7 @@ img {
 <section class="hero" id="home">
   <div class="container hero-content">
     <div class="hero-kicker en">
-      TRAVEL × DISCOVERY × CONNECT
+      TRAVEL × LIFE TRANSITION × DIGITAL SERVICES
     </div>
 
     <h1>
@@ -976,15 +982,17 @@ img {
     </h1>
 
     <p class="hero-sub">
-      行きたい場所も、出会いたい景色も。<br>
-      限られた予算の中に、まだ知らない旅の選択肢を。<br>
-      Aileronは、人と地域の魅力をつなぎます。
+      旅行の計画から、暮らしの転機に必要な準備まで。<br>
+      Aileronは、Webサービスを通じて人々の次の一歩を支えます。
     </p>
 
     <div class="hero-buttons">
      <a href="https://tabi-hikaku.pages.dev/" class="button button-primary" target="_blank" rel="noopener noreferrer">
   OPEN AILERON TRAVEL <span>→</span>
 </a>
+      <a href="https://lifeshift.pages.dev/" class="button button-outline" target="_blank" rel="noopener noreferrer">
+        OPEN LIFE SHIFT <span>→</span>
+      </a>
       <a href="#contact" class="button button-outline">
         BUSINESS INQUIRY <span>↗</span>
       </a>
@@ -1004,16 +1012,18 @@ img {
       <div class="section-label en">01 / ABOUT AILERON</div>
 
       <h2 class="section-title">
-        旅をする人と、<br>
-        旅を迎える地域を。
+        旅と暮らしの、<br>
+        次の一歩を支える。
       </h2>
 
       <p class="intro-text">
-        旅行先を決めるときは、交通費・宿泊費・食事代・観光費用など、旅行全体の予算を考える必要があります。Aileron Travelでは、出発地や目的地、旅行予算をもとに、交通手段やホテル、食事、観光スポットをまとめて検討できます。<br><br>
+        Aileronは、旅行や暮らしの場面で生まれる「何を選び、何から始めればよいか分からない」という悩みを、Webサービスで整理することを目指しています。<br><br>
 
-        一方で、地域にはまだ知られていない景色や、訪れる価値のあるお店、そこでしか出会えない体験があります。<br><br>
+        「旅比べ」では、出発地・目的地・旅行予算をもとに、交通手段やホテル、食事、観光スポットをまとめて検討できます。<br><br>
 
-        Aileronは、旅行にかかる費用をまとめて比較・計画できるサービスを通じて、旅行者と地域の新しい接点をつくります。
+        「LIFE SHIFT」では、進学・就職・転職・引越しなど、暮らしの変化に伴う準備や手続き、期限や進捗を整理できます。<br><br>
+
+        旅行者と地域をつなぐ取り組みと、人生の転機を支えるサービス。Aileronは、日々の選択と行動を少し分かりやすくする仕組みを企画・運営します。
       </p>
 
       <div class="intro-small en">
@@ -1036,9 +1046,9 @@ img {
   <div class="container">
     <div class="features-heading reveal">
       <div class="section-label en">02 / OUR STRENGTHS</div>
-      <h2 class="section-title">Aileronが大切にする3つのこと</h2>
+      <h2 class="section-title">Aileronのサービス領域</h2>
       <p class="section-desc">
-        旅の計画から地域との出会いまで、使いやすさと実用性を大切にします。
+        旅行・地域の情報発信・暮らしの転機。それぞれの場面に役立つWebサービスを展開します。
       </p>
     </div>
 
@@ -1198,7 +1208,8 @@ img {
           ホテル、旅館、飲食店、観光施設などの情報を整理し、旅行者に伝わる形で発信することを支援します。<br><br>
           施設の特徴、サービス、アクセス、周辺の見どころなど、訪問前に知りたい情報を分かりやすく届けることを目指します。
         </p>
-        <a class="service-contact" href="./tourism-marketing-support.html">観光集客支援の内容を見る →</a><br>\n        <a class="service-contact" href="#contact">掲載・情報発信について相談する →</a>
+        <a class="service-contact" href="./tourism-marketing-support.html">観光集客支援の内容を見る →</a><br>
+        <a class="service-contact" href="#contact">掲載・情報発信について相談する →</a>
       </div>
     </div>
 
@@ -1215,7 +1226,8 @@ img {
           事業者ごとの課題や目標を伺い、Webサイトやオンライン上の情報発信を活用した改善案を検討します。<br><br>
           現状の整理から施策の優先順位づけまで、事業の状況に合わせた無理のない取り組みを目指します。
         </p>
-        <a class="service-contact" href="./tourism-marketing-support.html">観光集客支援・Web集客サポートの詳細 →</a><br>\n        <a class="service-contact" href="#contact">集客支援について相談する →</a>
+        <a class="service-contact" href="./tourism-marketing-support.html">観光集客支援・Web集客サポートの詳細 →</a><br>
+        <a class="service-contact" href="#contact">集客支援について相談する →</a>
        
       </div>
     </div>
@@ -1244,7 +1256,7 @@ img {
 <section class="flow" id="flow">
   <div class="container">
     <div class="reveal">
-      <div class="section-label en">04 / BUSINESS FLOW</div>
+      <div class="section-label en">05 / BUSINESS FLOW</div>
       <h2 class="section-title">ご相談からサポートまで</h2>
       <p class="section-desc">
         事業者様の状況や目的を確認しながら、必要な取り組みを一緒に考えます。
@@ -1282,7 +1294,7 @@ img {
 <!-- PRICE -->
 <section class="price" id="price">
   <div class="container reveal">
-    <div class="section-label en">05 / PRICING</div>
+    <div class="section-label en">06 / PRICING</div>
     <h2 class="section-title">サービス料金</h2>
     <p class="section-desc">
       以下は掲載中の参考価格です。具体的な範囲・条件はお問い合わせ内容を確認してご案内します。
@@ -1318,7 +1330,7 @@ img {
 <section class="voice">
   <div class="container">
     <div class="reveal">
-      <div class="section-label en">06 / USE CASE</div>
+      <div class="section-label en">07 / USE CASE</div>
       <h2 class="section-title">支援内容のイメージ</h2>
       <p class="section-desc">
         Aileronのサービス活用を想定したモデルケースです。
@@ -1349,7 +1361,7 @@ img {
 <section class="company" id="company">
   <div class="container company-layout">
     <div class="reveal">
-      <div class="section-label en">07 / COMPANY</div>
+      <div class="section-label en">08 / COMPANY</div>
       <h2 class="section-title">運営情報</h2>
       <p class="section-desc">
         Aileronについて
@@ -1397,7 +1409,7 @@ img {
 <section class="contact" id="contact">
   <div class="container">
     <div class="contact-heading reveal">
-      <div class="section-label en">08 / CONTACT</div>
+      <div class="section-label en">09 / CONTACT</div>
       <h2 class="section-title">お問い合わせ</h2>
       <p class="section-desc">
         サービスに関するご質問、観光事業者様からのご相談、<br>

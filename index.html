@@ -418,10 +418,28 @@ img {
 
 .feature-card {
   background: white;
-  padding: 42px 32px;
-  min-height: 310px;
+  padding: 0;
+  min-height: 390px;
   border-top: 3px solid transparent;
-  transition: .3s;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(16,29,48,.06);
+  transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+}
+.feature-card-image {
+  display: block;
+  width: 100%;
+  height: 155px;
+  object-fit: cover;
+  transition: transform .55s ease;
+}
+.feature-card:hover {
+  box-shadow: 0 20px 42px rgba(16,29,48,.12);
+}
+.feature-card:hover .feature-card-image {
+  transform: scale(1.045);
+}
+.feature-card-content {
+  padding: 27px 27px 30px;
 }
 
 .feature-card:hover {
@@ -1176,26 +1194,38 @@ img {
 
     <div class="feature-grid">
       <article class="feature-card reveal">
-        <div class="feature-number en">01 / TRAVEL</div>
-        <h3>旅の計画を、予算から考える</h3>
-        <p>出発地・目的地・予算をもとに、交通・宿泊・食事・観光を含めた旅行全体の選択肢を整理する「旅比べ」を運営しています。</p>
-        <a href="https://tabi-hikaku.pages.dev/" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:18px;color:#315f86;font-size:13px;font-weight:700;text-decoration:underline;">旅比べを利用する →</a>
+        <img class="feature-card-image" src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=900&q=85" alt="湖と山々が広がる旅行先の風景" width="900" height="600" loading="lazy">
+        <div class="feature-card-content">
+          <div class="feature-number en">01 / TRAVEL</div>
+          <h3>旅の計画を、予算から考える</h3>
+          <p>出発地・目的地・予算をもとに、交通・宿泊・食事・観光を含めた旅行全体の選択肢を整理する「旅比べ」を運営しています。</p>
+          <a href="https://tabi-hikaku.pages.dev/" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:18px;color:#315f86;font-size:13px;font-weight:700;text-decoration:underline;">旅比べを利用する →</a>
+        </div>
       </article>
       <article class="feature-card reveal">
-        <div class="feature-number en">02 / LIFE SHIFT</div>
-        <h3>人生の転機に必要な準備を整理</h3>
-        <p>進学・就職・転職・引越しなど、ライフイベントに伴うタスクや期限、進捗をまとめて確認できる「LIFE SHIFT」を運営しています。</p>
-        <a href="https://lifeshift.pages.dev/" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:18px;color:#315f86;font-size:13px;font-weight:700;text-decoration:underline;">LIFE SHIFTを利用する →</a>
+        <img class="feature-card-image" src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=85" alt="落ち着いた雰囲気の現代的な住空間" width="900" height="600" loading="lazy">
+        <div class="feature-card-content">
+          <div class="feature-number en">02 / LIFE SHIFT</div>
+          <h3>人生の転機に必要な準備を整理</h3>
+          <p>進学・就職・転職・引越しなど、ライフイベントに伴うタスクや期限、進捗をまとめて確認できる「LIFE SHIFT」を運営しています。</p>
+          <a href="https://lifeshift.pages.dev/" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:18px;color:#315f86;font-size:13px;font-weight:700;text-decoration:underline;">LIFE SHIFTを利用する →</a>
+        </div>
       </article>
       <article class="feature-card reveal">
-        <div class="feature-number en">03 / DIGITAL</div>
-        <h3>日々の行動を支える仕組みづくり</h3>
-        <p>情報を分かりやすく整理し、必要な情報にたどり着きやすくする。利用者の課題や行動に目を向けたWebサービスを企画・改善します。</p>
+        <img class="feature-card-image" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=85" alt="明るく整ったワークスペース" width="900" height="600" loading="lazy">
+        <div class="feature-card-content">
+          <div class="feature-number en">03 / DIGITAL</div>
+          <h3>日々の行動を支える仕組みづくり</h3>
+          <p>情報を分かりやすく整理し、必要な情報にたどり着きやすくする。利用者の課題や行動に目を向けたWebサービスを企画・改善します。</p>
+        </div>
       </article>
       <article class="feature-card reveal">
-        <div class="feature-number en">04 / CONNECT</div>
-        <h3>人・地域・サービスをつなぐ</h3>
-        <p>地域や事業者が持つ魅力と、それを必要とする人との接点をつくるため、Webを活用した情報発信や集客支援にも取り組みます。</p>
+        <img class="feature-card-image" src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=900&q=85" alt="都市の建築と街並み" width="900" height="600" loading="lazy">
+        <div class="feature-card-content">
+          <div class="feature-number en">04 / CONNECT</div>
+          <h3>人・地域・サービスをつなぐ</h3>
+          <p>地域や事業者が持つ魅力と、それを必要とする人との接点をつくるため、Webを活用した情報発信や集客支援にも取り組みます。</p>
+        </div>
       </article>
     </div>    <div style="text-align:center;margin-top:34px;color:#687685;font-size:14px;line-height:2.2;">
       <p>旅行予算の考え方を知りたい方へ　

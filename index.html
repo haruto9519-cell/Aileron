@@ -449,6 +449,53 @@ img {
   margin-top: 18px;
 }
 
+.life-shift-visual {
+  position: relative;
+  height: 290px;
+  margin: 48px 0 8px;
+  overflow: hidden;
+  background: #172b40;
+}
+.life-shift-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.life-shift-visual::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,rgba(8,22,39,.78),rgba(8,22,39,.08));
+}
+.life-shift-visual-copy {
+  position: absolute;
+  z-index: 1;
+  left: clamp(22px,5vw,64px);
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+}
+.life-shift-visual-copy span {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #d6e2ee;
+  margin-bottom: 15px;
+}
+.life-shift-visual-copy strong {
+  display: block;
+  font-size: clamp(22px,3vw,34px);
+  line-height: 1.7;
+  font-weight: 500;
+}
+@media(max-width:800px) {
+  .life-shift-visual { height: 230px; margin-top: 34px; }
+}
+@media(max-width:450px) {
+  .life-shift-visual { height: 205px; }
+}
+
 /* SERVICE */
 
 .service {
@@ -1228,6 +1275,13 @@ img {
       <div class="section-label en">LIFE SHIFT / LIFE TRANSITION SUPPORT</div>
       <h2 class="section-title">暮らしの転機に、やるべきことを見える形に。</h2>
       <p class="section-desc">進学、就職、転職、引越し。新しい生活が始まるときに必要な準備を整理し、次の行動へつなげるサービスです。</p>
+    </div>
+    <div class="life-shift-visual">
+      <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=85" alt="新しい暮らしを整える落ち着いた住空間" loading="lazy">
+      <div class="life-shift-visual-copy">
+        <span class="en">YOUR NEXT CHAPTER, ORGANIZED.</span>
+        <strong>新しい生活の準備を、<br>一つずつ前へ。</strong>
+      </div>
     </div>
     <div class="feature-grid">
       <article class="feature-card reveal">

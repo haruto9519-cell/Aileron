@@ -219,22 +219,75 @@ img {
 /* HERO */
 
 .hero {
-  height: 850px;
-  min-height: 680px;
-  max-height: 100vh;
+  min-height: 760px;
   position: relative;
   display: flex;
   align-items: center;
+  overflow: hidden;
   color: white;
   background:
-    linear-gradient(90deg, rgba(8,22,39,.82) 0%, rgba(8,22,39,.46) 48%, rgba(8,22,39,.12) 100%),
-    url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=2200&q=90") center 55%/cover;
+    linear-gradient(105deg, rgba(7,19,34,.96) 0%, rgba(10,28,48,.91) 52%, rgba(10,28,48,.62) 100%),
+    url("https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=2200&q=90") center 48%/cover;
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
-  padding-top: 70px;
+  padding-top: 92px;
+  padding-bottom: 90px;
+  display: grid;
+  grid-template-columns: minmax(0,1.05fr) minmax(340px,.85fr);
+  align-items: center;
+  gap: clamp(35px,6vw,90px);
+}
+
+.hero-copy { max-width: 690px; }
+.hero-visual {
+  display: grid;
+  gap: 16px;
+}
+.hero-service-card {
+  min-height: 190px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 25px 28px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.24);
+  background-position: center;
+  background-size: cover;
+  box-shadow: 0 18px 45px rgba(0,0,0,.22);
+  transition: transform .3s ease, border-color .3s ease;
+}
+.hero-service-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,.65); }
+.hero-service-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,rgba(6,18,32,.88),rgba(6,18,32,.24));
+}
+.hero-service-card > * { position: relative; z-index: 1; }
+.hero-service-card.travel {
+  background-image: url("https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1000&q=85");
+}
+.hero-service-card.life {
+  background-image: url("https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=85");
+}
+.hero-service-card span {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: #d6e2ee;
+}
+.hero-service-card strong {
+  font-size: 24px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+.hero-service-card small {
+  font-size: 12px;
+  color: #e3eaf1;
+  margin-top: 5px;
 }
 
 .hero-kicker {
@@ -831,10 +884,27 @@ img {
   }
 
   .hero {
-    height: 760px;
-    min-height: 650px;
+    min-height: 0;
     background-position: 58% center;
   }
+
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 38px;
+    padding-top: 115px;
+    padding-bottom: 105px;
+  }
+
+  .hero-visual {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero-service-card {
+    min-height: 165px;
+    padding: 18px;
+  }
+
+  .hero-service-card strong { font-size: 20px; }
 
   .hero h1 {
     font-size: clamp(39px,9vw,57px);
@@ -914,6 +984,8 @@ img {
 }
 
 @media(max-width: 450px) {
+  .hero-visual { grid-template-columns: 1fr; }
+  .hero-service-card { min-height: 145px; }
   .hero-buttons {
     flex-direction: column;
     align-items: flex-start;
@@ -973,33 +1045,35 @@ img {
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="container hero-content">
-    <div class="hero-kicker en">
-      WEB SERVICES FOR LIFE & EVERYDAY CHOICES
+    <div class="hero-copy">
+      <div class="hero-kicker en">WEB SERVICES FOR LIFE & EVERYDAY CHOICES</div>
+      <h1>
+        旅と暮らしに、<br>
+        <span>新しい選択肢</span>を。
+      </h1>
+      <p class="hero-sub">
+        日々の選択から、人生の大きな転機まで。<br>
+        Aileronは、Webサービスを通じて人々の行動と次の一歩を支えます。
+      </p>
+      <div class="hero-buttons">
+        <a href="https://tabi-hikaku.pages.dev/" class="button button-primary" target="_blank" rel="noopener noreferrer">OPEN TABI-HIKAKU <span>→</span></a>
+        <a href="https://lifeshift.pages.dev/" class="button button-outline" target="_blank" rel="noopener noreferrer">OPEN LIFE SHIFT <span>→</span></a>
+        <a href="#contact" class="button button-outline">BUSINESS INQUIRY <span>↗</span></a>
+      </div>
     </div>
-
-    <h1>
-      旅と暮らしに、<br>
-      <span>新しい選択肢</span>を。
-    </h1>
-
-    <p class="hero-sub">
-      日々の選択から、人生の大きな転機まで。<br>
-      Aileronは、Webサービスを通じて人々の行動と次の一歩を支えます。
-    </p>
-
-    <div class="hero-buttons">
-     <a href="https://tabi-hikaku.pages.dev/" class="button button-primary" target="_blank" rel="noopener noreferrer">
-  OPEN AILERON TRAVEL <span>→</span>
-</a>
-      <a href="https://lifeshift.pages.dev/" class="button button-outline" target="_blank" rel="noopener noreferrer">
-        OPEN LIFE SHIFT <span>→</span>
+    <div class="hero-visual" aria-label="Aileronの主なWebサービス">
+      <a class="hero-service-card travel" href="https://tabi-hikaku.pages.dev/" target="_blank" rel="noopener noreferrer">
+        <span class="en">01 / TRAVEL PLANNING</span>
+        <strong>旅比べ</strong>
+        <small>予算から、旅の選択肢を見つける。</small>
       </a>
-      <a href="#contact" class="button button-outline">
-        BUSINESS INQUIRY <span>↗</span>
+      <a class="hero-service-card life" href="https://lifeshift.pages.dev/" target="_blank" rel="noopener noreferrer">
+        <span class="en">02 / LIFE TRANSITION</span>
+        <strong>LIFE SHIFT</strong>
+        <small>暮らしの転機に必要な準備を整理する。</small>
       </a>
     </div>
   </div>
-
   <div class="hero-bottom en">
     <span>AILERON / OFFICIAL WEBSITE</span>
     <span>DISCOVER MORE ↓</span>

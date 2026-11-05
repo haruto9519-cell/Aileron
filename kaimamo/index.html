@@ -368,6 +368,43 @@ th:first-child,th:last-child{border-radius:0}
   </div>
 </section>
 
+
+<style>
+.guide-hub{padding:34px 0 48px}
+.guide-hub h2{margin:0 0 8px;color:#102844;font-size:24px;letter-spacing:-.03em}
+.guide-hub .guide-intro{margin:0 0 18px;color:#64758a;font-size:13px;line-height:1.8}
+.guide-hub-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.guide-hub-card{display:block;padding:18px 19px;background:#fff;border:1px solid #e3eaf1;border-radius:14px;text-decoration:none;box-shadow:0 5px 18px rgba(16,35,63,.04);transition:transform .18s,border-color .18s}
+.guide-hub-card:hover{transform:translateY(-2px);border-color:#138f86}
+.guide-hub-card strong{display:block;color:#102844;font-size:14px;margin-bottom:5px}
+.guide-hub-card span{display:block;color:#64758a;font-size:12px;line-height:1.7}
+.guide-hub-note{margin:13px 0 0;color:#8491a1;font-size:11px}
+@media(max-width:540px){.guide-hub-grid{grid-template-columns:1fr}.guide-hub{padding:26px 0 34px}}
+</style>
+<section class="guide-hub shell" aria-labelledby="guide-hub-title">
+  <h2 id="guide-hub-title">ネット通販で困ったときの無料ガイド</h2>
+  <p class="guide-intro">購入前の確認から、返品・返金、定期購入、注文後のトラブルまで。公的機関の情報を参考に、確認する順番をまとめています。</p>
+  <div class="guide-hub-grid">
+    <a class="guide-hub-card" href="./shop-check-guide.html">
+      <strong>怪しい通販サイトの見分け方 →</strong>
+      <span>URL・販売者情報・価格・支払い方法など、注文前の確認ポイント。</span>
+    </a>
+    <a class="guide-hub-card" href="./return-refund-guide.html">
+      <strong>ネット通販の返品・返金方法 →</strong>
+      <span>返品期限、返品特約、送料、販売者への連絡前に確認したいこと。</span>
+    </a>
+    <a class="guide-hub-card" href="./subscription-guide.html">
+      <strong>サブスクの解約方法 →</strong>
+      <span>次回更新日、解約窓口、申出期限、手続き後に残す記録。</span>
+    </a>
+    <a class="guide-hub-card" href="./trouble-response-guide.html">
+      <strong>ネット通販トラブルの対処法 →</strong>
+      <span>商品が届かない・違う商品が届いた・返金されないときの確認手順。</span>
+    </a>
+  </div>
+  <p class="guide-hub-note">※一般的な情報提供です。個別の契約や返金の可否を判断・保証するものではありません。</p>
+</section>
+
 <footer class="footer"><div class="shell footer-inner"><div class="footer-brand"><strong>買いまも</strong><span>購入サポートサービス</span></div><div class="footer-links"><a href="./return-refund-guide.html">返品・返金ガイド</a><a href="./shop-check-guide.html">ショップ確認ガイド</a><a href="./subscription-guide.html">定期購入ガイド</a><a href="./trouble-response-guide.html">トラブル対応ガイド</a><a href="../privacy.html">プライバシーポリシー</a><a href="../terms.html">利用規約</a><a href="https://haruto9519-cell.github.io/Aileron/">Aileron公式サイト</a><span>© 2026 Aileron</span></div></div></footer><div class="toast" id="toast"></div>
 <script>
 const KEY='kaimamo_v1_data';

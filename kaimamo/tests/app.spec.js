@@ -70,7 +70,7 @@ test('return and refund navigator creates a plan and saves a case', async ({ pag
   await page.locator('#returnShop').fill('テストショップ');
   await page.locator('#returnDetails').fill('サイズが合わなかった');
   await page.getByRole('button', { name: '対応手順を表示' }).click();
-  await expect(page.locator('#returnPlan')).toContainText('返品または交換');
+  await expect(page.locator('#returnPlan')).toContainText('返品・交換したい');
   await expect(page.locator('#returnPlan')).toContainText('テストショップ');
   await page.locator('#caseName').fill('テスト返品案件');
   await page.locator('#caseStatus').selectOption('問い合わせ済み');
@@ -124,9 +124,9 @@ test('message maker generates a contextual support message', async ({ page }) =>
   await page.locator('#msgOrder').fill('ORDER-123');
   await page.locator('#msgDetails').fill('発送通知後、配送状況が更新されません');
   await page.getByRole('button', { name: '文章を作成' }).click();
-  await expect(page.locator('#msgOutput')).toContainText('テストショップ');
-  await expect(page.locator('#msgOutput')).toContainText('ORDER-123');
-  await expect(page.locator('#msgOutput')).toContainText('配送状況');
+  await expect(page.locator('#msgOutput')).toHaveValue(/テストショップ/);
+  await expect(page.locator('#msgOutput')).toHaveValue(/ORDER-123/);
+  await expect(page.locator('#msgOutput')).toHaveValue(/配送状況/);
 });
 
 test('arrival checklist saves selected inspection results', async ({ page }) => {

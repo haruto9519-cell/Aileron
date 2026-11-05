@@ -36,6 +36,7 @@ test('purchase records can be created, edited, persisted and deleted safely', as
   await expect(page.locator('#recordsBody img')).toHaveCount(0);
   await page.reload();
   await expect(page.locator('#statRecords')).toHaveText('1');
+  await page.getByRole('button', { name: /購入記録/ }).click();
   page.once('dialog', dialog => dialog.accept());
   await page.getByRole('button', { name: '削除' }).click();
   await expect(page.locator('#statRecords')).toHaveText('0');
@@ -51,7 +52,6 @@ test('deadlines are saved and reflected in the dashboard counters', async ({ pag
   await page.locator('#dDate').fill(date);
   await page.getByRole('button', { name: '保存する' }).click();
   await expect(page.locator('#statSoon')).toHaveText('1');
-  await page.getByRole('button', { name: 'すべて見る' }).click();
   await expect(page.locator('#deadlinesBody')).toContainText('テスト返品期限');
 });
 

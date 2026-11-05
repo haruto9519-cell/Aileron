@@ -7,8 +7,8 @@
 <meta name="robots" content="index,follow">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" type="image/png" href="https://haruto9519-cell.github.io/Aileron/aileron-logo.png">
-<meta name="description" content="買いまもは、ネット通販の購入前チェック、購入記録、返品・保証期限の管理をまとめて行える購入サポートサービスです。">
-<title>買いまも｜ネット通販の購入記録・返品期限管理</title>
+<meta name="description" content="買いまもは、ネット通販の購入記録・返品期限・保証期限をまとめて管理できる購入サポートサービスです。ショップ確認、購入後の記録、定期購入の更新日管理にも対応。">
+<title>買いまも｜ネット通販の購入記録・返品期限・保証期限を管理</title>
 <meta property="og:type" content="website">
 <meta property="og:title" content="買いまも｜ネット通販の購入記録・返品期限管理">
 <meta property="og:description" content="ショップの確認、購入内容の記録、返品や保証の期限管理。ネットで買い物をするときに必要なことをまとめて管理できます。">
@@ -201,10 +201,24 @@ th:first-child,th:last-child{border-radius:0}
 @media(max-width:540px){.brandmark-image{width:39px;height:34px}.brand-panel-logo{height:70px}}
 
 </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "買いまも",
+  "url": "https://haruto9519-cell.github.io/Aileron/kaimamo/",
+  "description": "ネット通販のショップ確認、購入記録、返品期限・保証期限、定期購入の更新日をまとめて管理する購入サポートWebアプリ。",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Web browser",
+  "inLanguage": "ja"
+}
+</script>
+
 </head>
 <body>
 <header class="topbar"><div class="shell topinner"><a class="brand" href="https://haruto9519-cell.github.io/Aileron/" aria-label="Aileron公式サイト"><span class="brandmark brandmark-image"><img src="https://haruto9519-cell.github.io/Aileron/aileron-logo.png" alt="Aileronロゴ"></span></a><span class="product-name">買いまも</span><div class="topright"><span class="privacy-pill">データはこの端末内に保存</span></div></div></header>
-<section class="hero"><div class="shell hero-grid"><div><div class="eyebrow">PURCHASE SUPPORT</div><h1>ネットで買う前に。<br>買ったあとも。</h1><p><strong>買いまも</strong>は、ショップの確認、購入内容の記録、返品や保証の期限管理。ネットで買い物をするときに必要なことを、まとめて管理できます。</p><div class="hero-actions"><button class="btn btn-primary" onclick="showPanel('safety')">ショップをチェックする <span>→</span></button><button class="btn btn-ghost" onclick="showPanel('records')">購入記録をつける</button></div></div></div></section>
+<section class="hero"><div class="shell hero-grid"><div><div class="eyebrow">PURCHASE SUPPORT</div><h1>ネット通販の購入記録・返品期限を、ひとつに管理。</h1><p><strong>買いまも</strong>は、ショップの確認、購入内容の記録、返品や保証の期限管理。ネットで買い物をするときに必要なことを、まとめて管理できます。</p><div class="hero-actions"><button class="btn btn-primary" onclick="showPanel('safety')">ショップをチェックする <span>→</span></button><button class="btn btn-ghost" onclick="showPanel('records')">購入記録をつける</button></div></div></div></section>
 <main class="shell main"><div class="stats"><div class="stat"><div class="stat-label">購入記録</div><div class="stat-value" id="statRecords">0</div><div class="stat-note">この端末に保存中</div></div><div class="stat"><div class="stat-label">期限が近い予定</div><div class="stat-value" id="statSoon">0</div><div class="stat-note">今後7日以内</div></div><div class="stat"><div class="stat-label">確認が必要な期限</div><div class="stat-value" id="statLate">0</div><div class="stat-note">期限を過ぎた予定</div></div></div>
 <div class="layout"><aside class="sidebar"><button class="navbtn active" data-panel="home" onclick="showPanel('home')">ホーム</button><button class="navbtn" data-panel="safety" onclick="showPanel('safety')">ショップ確認</button><button class="navbtn" data-panel="records" onclick="showPanel('records')">購入記録</button><button class="navbtn" data-panel="deadlines" onclick="showPanel('deadlines')">期限管理</button><button class="navbtn" data-panel="guide" onclick="showPanel('guide')">トラブル対処</button>
 <button class="navbtn" data-panel="returns" onclick="showPanel('returns')">返品・返金ナビ</button>
@@ -292,6 +306,45 @@ th:first-child,th:last-child{border-radius:0}
 <p class="notice">案件情報はこのブラウザ内に保存されます。共有端末では利用後にデータを消去し、機密情報を入力しないでください。</p></section>
 <section class="panel" id="panel-settings"><div class="section-head"><div><h2>データ・設定</h2><p>保存データのバックアップや削除ができます。</p></div></div><div class="card"><h3>プライバシーについて</h3><p>このβ版では、購入記録・期限・診断記録などはお使いのブラウザ内（ローカルストレージ）に保存されます。証拠保管庫の添付ファイルはIndexedDBに別保存され、JSONバックアップには含まれません。サーバーへの送信やアカウント登録は行いません。同じ端末・同じブラウザでご利用ください。ブラウザのデータ削除や端末変更で記録が失われる場合があります。</p><div class="settings-row" style="margin-top:15px"><div><strong>データをバックアップ</strong><p>購入記録・期限・案件・定期購入・到着チェック・タイムライン・診断記録をJSON保存します。証拠保管庫の添付ファイルは含まれません。</p></div><button class="btn btn-outline" onclick="exportData()">書き出す</button></div><div class="settings-row"><div><strong>バックアップを復元</strong><p>以前に書き出したJSONファイルを読み込みます。</p></div><label class="btn btn-outline" for="importFile">読み込む</label><input class="hidden" id="importFile" type="file" accept="application/json" onchange="importData(event)"></div><div class="settings-row"><div><strong>すべてのデータを削除</strong><p>このブラウザに保存した購入記録・期限を削除します。</p></div><button class="btn" style="background:#fff0f0;color:#b44444" onclick="clearData()">すべて削除</button></div></div><div class="card"><h3>サービス情報</h3><div class="settings-row"><div><strong>買いまも</strong><p>買う前から、買った後まで。</p></div><span class="tag">β版</span></div><div class="settings-row"><div><strong>運営</strong><p>Aileron（サービス開発・運営）</p></div></div><div class="settings-row"><div><strong>バージョン</strong><p>初期公開版 0.1</p></div></div><p class="notice">β版のため、機能・表示内容は予告なく変更される場合があります。安全性や損害の回避を保証するものではありません。</p></div></section>
 </div></div></main>
+
+<section class="seo-content" aria-labelledby="seo-title">
+  <div class="seo-inner">
+    <p class="seo-eyebrow">KAIMAMO PURCHASE SUPPORT</p>
+    <h2 id="seo-title">買いまもは、ネット通販の購入前後をまとめて管理するサービスです</h2>
+    <p>ネット通販では、購入先の情報を確認すること、注文内容を記録すること、返品や保証の期限を把握することが大切です。買いまもは、こうした買い物に関する確認や記録を、ひとつの画面で整理できる購入サポートWebアプリです。</p>
+
+    <h3>買いまもでできること</h3>
+    <div class="seo-grid">
+      <article><h4>購入前のショップ確認</h4><p>ショップのURLや運営者情報、連絡先、返品条件など、購入前に確認したい項目をチェックリストで整理できます。自動的な詐欺判定や安全保証を行うものではありません。</p></article>
+      <article><h4>ネット通販の購入記録</h4><p>商品名、購入先、購入日、注文に関するメモを記録し、あとから購入内容を振り返りやすくします。</p></article>
+      <article><h4>返品期限・保証期限の管理</h4><p>返品の申出期限や保証期限など、自分で登録した日付を一覧で確認できます。期限の条件は購入先や商品ごとに確認してください。</p></article>
+      <article><h4>定期購入・トラブル対応の整理</h4><p>定期購入の次回更新日、販売者との連絡内容、商品到着時の確認事項などをまとめて管理できます。</p></article>
+    </div>
+
+    <h3>ネット通販で購入したら記録しておきたい項目</h3>
+    <ul>
+      <li>ショップ名・販売事業者名・問い合わせ先</li>
+      <li>商品名・注文番号・購入日・支払金額</li>
+      <li>返品・交換の条件と申出期限</li>
+      <li>保証期間と保証を受けるための条件</li>
+      <li>定期購入の次回更新日・解約方法</li>
+      <li>販売者への問い合わせ内容と返信</li>
+    </ul>
+    <p>購入時の画面や注文確認メールも、必要に応じて別途保管しましょう。買いまもは記録を整理するための補助ツールであり、販売者の規約や法律上の判断に代わるものではありません。</p>
+
+    <h3>返品・返金の条件を確認したい方へ</h3>
+    <p>通信販売の返品条件は、購入先が表示している返品特約や商品・取引の状況によって異なります。返品を考えている場合は、まず注文時の表示や販売者の公式案内を確認してください。</p>
+    <p><a href="./return-refund-guide.html">ネット通販の返品・返金方法｜返品期限と確認ポイントを読む</a></p>
+
+    <h3>よくある質問</h3>
+    <details><summary>買いまもは購入先の安全性を自動判定しますか？</summary><p>いいえ。確認項目を整理するチェックリストです。入力内容やショップの安全性を自動調査・保証するものではありません。</p></details>
+    <details><summary>購入記録はどこに保存されますか？</summary><p>購入記録などは利用中のブラウザ内に保存されます。サーバー同期はありません。同じ端末・同じブラウザで利用し、必要に応じてバックアップしてください。</p></details>
+    <details><summary>返品期限や保証期限を自動で調べてくれますか？</summary><p>いいえ。購入先や商品ごとの条件を確認し、利用者自身が期限を登録して管理する仕組みです。</p></details>
+    <details><summary>スマートフォンでも使えますか？</summary><p>Webブラウザから利用できます。端末やブラウザのデータを削除すると、保存した記録が失われる場合があります。</p></details>
+    <p class="seo-disclaimer">買いまもは購入に関する情報や期限を整理するためのβ版サービスです。購入先の安全性、返品・返金の可否、期限内の対応、損害の回避を保証するものではありません。パスワード、決済情報、本人確認書類などの機密情報は入力しないでください。</p>
+  </div>
+</section>
+
 <footer class="footer"><div class="shell footer-inner"><div class="footer-brand"><strong>買いまも</strong><span>購入サポートサービス</span></div><div class="footer-links"><a href="./return-refund-guide.html">ネット通販の返品・返金ガイド</a><a href="https://haruto9519-cell.github.io/Aileron/">Aileron公式サイト</a><span>© 2026 Aileron</span></div></div></footer><div class="toast" id="toast"></div>
 <script>
 const KEY='kaimamo_v1_data';
@@ -391,6 +444,25 @@ body{background:#f7f8f7;color:#2d3b43}
 .stat-label,.field label{font-weight:600}
 .footer{background:#f7f8f7}
 @media(max-width:800px){.hero{padding:42px 0 48px}.stats{margin-top:-12px}.card{padding:16px}}
+</style>
+
+
+<style>
+.seo-content{background:#fff;border-top:1px solid #e1e5e3;padding:54px 20px 64px;color:#34434a}
+.seo-inner{max-width:980px;margin:0 auto;line-height:1.9}
+.seo-eyebrow{font-size:11px;letter-spacing:.15em;color:#71857c;font-weight:700}
+.seo-inner h2{font-size:clamp(23px,3vw,30px);line-height:1.5;color:#243746;margin:8px 0 16px}
+.seo-inner h3{font-size:20px;color:#243746;margin:34px 0 12px}
+.seo-inner p,.seo-inner li{font-size:14px;color:#52616a}
+.seo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:16px 0}
+.seo-grid article{border:1px solid #e1e5e3;padding:18px;background:#fbfcfb}
+.seo-grid h4{margin:0 0 7px;color:#344b5b;font-size:15px}
+.seo-grid article p{margin:0}
+.seo-inner details{border-top:1px solid #e1e5e3;padding:13px 2px}
+.seo-inner summary{font-weight:700;color:#344b5b;cursor:pointer}
+.seo-inner details p{margin:8px 0 0}
+.seo-disclaimer{font-size:12px!important;color:#77847f!important;background:#f5f7f5;padding:14px 16px;margin-top:26px}
+@media(max-width:600px){.seo-content{padding:38px 18px 44px}.seo-grid{grid-template-columns:1fr}.seo-inner h3{font-size:18px}}
 </style>
 
 </body></html>');w.document.close()}

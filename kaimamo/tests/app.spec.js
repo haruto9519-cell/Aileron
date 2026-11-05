@@ -143,3 +143,15 @@ test('arrival checklist saves selected inspection results', async ({ page }) => 
   await page.locator('[data-panel="arrival"]').click();
   await expect(page.locator('#arrivalList')).toContainText('テスト商品');
 });
+
+test('purchase workspace creates a case and carries details into related tools', async ({ page }) => {
+  await page.locator('[data-panel="workspace"]').click();
+  await page.locator('#wsName').fill('統合ワークスペーステスト');
+  await page.locator('#wsShop').fill('テストショップ');
+  await page.locator('#wsProduct').fill('テスト商品');
+  await page.getByRole('button', { name: '案件を作成' }).click();
+  await expect(page.locator('#workspaceList')).toContainText('統合ワークスペーステスト');
+  await page.getByRole('button', { name: '購入前診断へ' }).click();
+  await expect(page.locator('#riskShop')).toHaveValue('テストショップ');
+  await expect(page.locator('#riskProduct')).toHaveValue('テスト商品');
+});

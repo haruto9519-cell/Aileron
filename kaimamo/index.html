@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#10233f">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" type="image/png" href="https://haruto9519-cell.github.io/Aileron/aileron-logo.png">
 <meta name="description" content="買いまもは、Aileronが企画・運営する購入サポートサービスです。ネット通販の購入前チェック、購入記録、返品・保証期限の管理をひとつにまとめます。">
 <title>買いまも｜Aileron</title>
 <style>
@@ -185,11 +186,19 @@ th:first-child,th:last-child{border-radius:0}
  .footer-links{flex-direction:column;gap:7px}
 }
 
+
+/* Use the official Aileron logo asset, not a text placeholder */
+.brandmark-image{background:#fff;border:0;border-radius:0;width:46px;height:38px;padding:0;display:flex;align-items:center;justify-content:flex-start}
+.brandmark-image img{display:block;width:100%;height:100%;object-fit:contain;object-position:left center}
+.brand-panel-logo{display:block;width:min(100%,220px);height:88px;object-fit:contain;object-position:left center;margin:0 0 8px}
+.brand-panel-mark{display:none}
+@media(max-width:540px){.brandmark-image{width:39px;height:34px}.brand-panel-logo{height:70px}}
+
 </style>
 </head>
 <body>
-<header class="topbar"><div class="shell topinner"><a class="brand" href="https://haruto9519-cell.github.io/Aileron/" aria-label="Aileron公式サイト"><span class="brandmark">A</span><span class="brand-lockup"><strong>AILERON</strong><small>OFFICIAL SERVICE</small></span></a><span class="product-name">買いまも</span><div class="topright"><span class="privacy-pill">🔒 データはこの端末内に保存</span><span class="beta">BETA</span></div></div></header>
-<section class="hero"><div class="shell hero-grid"><div><div class="eyebrow">A SERVICE BY AILERON</div><h1>買い物の不安を、<br>ひとつずつ整理する。</h1><p><strong>買いまも</strong>は、Aileronが企画・運営する購入サポートサービスです。購入前の確認から、購入後の記録・期限管理まで、ネットショッピングを安心して進めるための情報を整理できます。</p><div class="hero-actions"><button class="btn btn-primary" onclick="showPanel('safety')">ショップをチェックする <span>→</span></button><button class="btn btn-ghost" onclick="showPanel('records')">購入記録をつける</button></div></div><div class="hero-visual"><div class="brand-panel"><div class="brand-panel-mark">A</div><div class="brand-panel-rule"></div><p>AILERON SERVICE</p><span>企画・運営：Aileron</span><span class="brand-panel-product">買いまも｜購入サポート</span></div></div></div></section>
+<header class="topbar"><div class="shell topinner"><a class="brand" href="https://haruto9519-cell.github.io/Aileron/" aria-label="Aileron公式サイト"><span class="brandmark brandmark-image"><img src="https://haruto9519-cell.github.io/Aileron/aileron-logo.png" alt="Aileronロゴ"></span><span class="brand-lockup"><strong>AILERON</strong><small>OFFICIAL SERVICE</small></span></a><span class="product-name">買いまも</span><div class="topright"><span class="privacy-pill">🔒 データはこの端末内に保存</span><span class="beta">BETA</span></div></div></header>
+<section class="hero"><div class="shell hero-grid"><div><div class="eyebrow">A SERVICE BY AILERON</div><h1>買い物の不安を、<br>ひとつずつ整理する。</h1><p><strong>買いまも</strong>は、Aileronが企画・運営する購入サポートサービスです。購入前の確認から、購入後の記録・期限管理まで、ネットショッピングを安心して進めるための情報を整理できます。</p><div class="hero-actions"><button class="btn btn-primary" onclick="showPanel('safety')">ショップをチェックする <span>→</span></button><button class="btn btn-ghost" onclick="showPanel('records')">購入記録をつける</button></div></div><div class="hero-visual"><div class="brand-panel"><img class="brand-panel-logo" src="https://haruto9519-cell.github.io/Aileron/aileron-logo.png" alt="Aileron"><div class="brand-panel-rule"></div><p>AILERON SERVICE</p><span>企画・運営：Aileron</span><span class="brand-panel-product">買いまも｜購入サポート</span></div></div></div></section>
 <main class="shell main"><div class="stats"><div class="stat"><div class="stat-label">購入記録</div><div class="stat-value" id="statRecords">0</div><div class="stat-note">この端末に保存中</div></div><div class="stat"><div class="stat-label">期限が近い予定</div><div class="stat-value" id="statSoon">0</div><div class="stat-note">今後7日以内</div></div><div class="stat"><div class="stat-label">確認が必要な期限</div><div class="stat-value" id="statLate">0</div><div class="stat-note">期限を過ぎた予定</div></div></div>
 <div class="layout"><aside class="sidebar"><button class="navbtn active" data-panel="home" onclick="showPanel('home')"><span class="ico">⌂</span>ホーム</button><button class="navbtn" data-panel="safety" onclick="showPanel('safety')"><span class="ico">🛡</span>ショップ確認</button><button class="navbtn" data-panel="records" onclick="showPanel('records')"><span class="ico">▤</span>購入記録</button><button class="navbtn" data-panel="deadlines" onclick="showPanel('deadlines')"><span class="ico">◷</span>期限管理</button><button class="navbtn" data-panel="guide" onclick="showPanel('guide')"><span class="ico">♡</span>トラブル対処</button>
 <button class="navbtn" data-panel="returns" onclick="showPanel('returns')"><span class="ico">↩</span>返品・返金ナビ</button>

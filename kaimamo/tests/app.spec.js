@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
- test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ page }) => {
   await page.goto('/');
 });
 
@@ -45,9 +45,9 @@ test('purchase records can be created, persisted and deleted safely', async ({ p
 
 test('deadlines are saved and reflected in the dashboard counters', async ({ page }) => {
   await page.getByRole('button', { name: /期限管理/ }).click();
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 2);
-  const date = [tomorrow.getFullYear(), String(tomorrow.getMonth()+1).padStart(2,'0'), String(tomorrow.getDate()).padStart(2,'0')].join('-');
+  const soon = new Date();
+  soon.setDate(soon.getDate() + 2);
+  const date = [soon.getFullYear(), String(soon.getMonth()+1).padStart(2,'0'), String(soon.getDate()).padStart(2,'0')].join('-');
   await page.getByRole('button', { name: /期限を追加/ }).click();
   await page.locator('#dName').fill('テスト返品期限');
   await page.locator('#dDate').fill(date);
@@ -62,4 +62,86 @@ test('backup export starts a JSON download', async ({ page }) => {
   await page.getByRole('button', { name: '書き出す' }).click();
   const download = await downloadPromise;
   expect(download.suggestedFilename()).toMatch(/^kaimamo-backup-.*\.json$/);
+});
+
+test('return and refund navigator creates a plan and saves a case', async ({ page }) => {
+  await page.locator('[data-panel="returns"]').click();
+  await page.locator('#returnIssue').selectOption('return');
+  await page.locator('#returnShop').fill('テストショップ');
+  await page.locator('#returnDetails').fill('サイズが合わなかった');
+  await page.getByRole('button', { name: '対応手順を表示' }).click();
+  await expect(page.locator('#returnPlan')).toContainText('返品または交換');
+  await expect(page.locator('#returnPlan')).toContainText('テストショップ');
+  await page.locator('#caseName').fill('テスト返品案件');
+  await page.locator('#caseStatus').selectOption('問い合わせ済み');
+  await page.locator('#caseMemo').fill('動作確認');
+  await page.getByRole('button', { name: '案件を保存' }).click();
+  await expect(page.locator('#casesList')).toContainText('テスト返品案件');
+  await page.reload();
+  await page.locator('[data-panel="returns"]').click();
+  await expect(page.locator('#casesList')).toContainText('テスト返品案件');
+});
+
+test('evidence vault saves a note and uploaded file in IndexedDB', async ({ page }) => {
+  await page.locator('[data-panel="evidence"]').click();
+  await page.locator('#evidenceCase').fill('テスト商品の証拠');
+  await page.locator('#evidenceNote').fill('到着時の状態を記録');
+  await page.locator('#evidenceFile').setInputFiles({
+    name: 'evidence.txt',
+    mimeType: 'text/plain',
+    buffer: Buffer.from('test evidence')
+  });
+  await page.getByRole('button', { name: '記録を保存' }).click();
+  await expect(page.locator('#evidenceList')).toContainText('テスト商品の証拠');
+  await expect(page.locator('#evidenceList')).toContainText('evidence.txt');
+  await page.reload();
+  await page.locator('[data-panel="evidence"]').click();
+  await expect(page.locator('#evidenceList')).toContainText('テスト商品の証拠');
+});
+
+test('subscription renewal is saved and counted on the dashboard', async ({ page }) => {
+  await page.locator('[data-panel="subscriptions"]').click();
+  const soon = new Date();
+  soon.setDate(soon.getDate() + 3);
+  const date = [soon.getFullYear(), String(soon.getMonth()+1).padStart(2,'0'), String(soon.getDate()).padStart(2,'0')].join('-');
+  await page.locator('#subName').fill('テスト定期サービス');
+  await page.locator('#subDate').fill(date);
+  await page.locator('#subAmount').fill('980');
+  await page.locator('#subCycle').selectOption('毎月');
+  await page.getByRole('button', { name: '登録する' }).click();
+  await expect(page.locator('#subscriptionsList')).toContainText('テスト定期サービス');
+  await expect(page.locator('#statSoon')).toHaveText('1');
+  await page.reload();
+  await page.locator('[data-panel="subscriptions"]').click();
+  await expect(page.locator('#subscriptionsList')).toContainText('テスト定期サービス');
+});
+
+test('message maker generates a contextual support message', async ({ page }) => {
+  await page.locator('[data-panel="message"]').click();
+  await page.locator('#msgType').selectOption('not-arrived').catch(async () => {
+    await page.locator('#msgType').selectOption('delivery');
+  });
+  await page.locator('#msgShop').fill('テストショップ');
+  await page.locator('#msgProduct').fill('テスト商品');
+  await page.locator('#msgOrder').fill('ORDER-123');
+  await page.locator('#msgDetails').fill('発送通知後、配送状況が更新されません');
+  await page.getByRole('button', { name: '文章を作成' }).click();
+  await expect(page.locator('#msgOutput')).toContainText('テストショップ');
+  await expect(page.locator('#msgOutput')).toContainText('ORDER-123');
+  await expect(page.locator('#msgOutput')).toContainText('配送状況');
+});
+
+test('arrival checklist saves selected inspection results', async ({ page }) => {
+  await page.locator('[data-panel="arrival"]').click();
+  await page.locator('#arrivalName').fill('テスト商品');
+  await page.locator('#arrivalShop').fill('テストショップ');
+  await page.locator('.arrivalCheck').nth(0).check();
+  await page.locator('.arrivalCheck').nth(2).check();
+  await page.locator('#arrivalMemo').fill('付属品を確認');
+  await page.getByRole('button', { name: 'チェック結果を保存' }).click();
+  await expect(page.locator('#arrivalList')).toContainText('テスト商品');
+  await expect(page.locator('#arrivalList')).toContainText('確認済み：2/6');
+  await page.reload();
+  await page.locator('[data-panel="arrival"]').click();
+  await expect(page.locator('#arrivalList')).toContainText('テスト商品');
 });

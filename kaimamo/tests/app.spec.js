@@ -24,6 +24,7 @@ test('shop checker rejects malformed URLs and explains its limits', async ({ pag
 });
 
 test('purchase records can be created, edited, persisted and deleted safely', async ({ page }) => {
+  await page.getByRole('button', { name: /購入記録/ }).click();
   await page.getByRole('button', { name: /購入を追加/ }).click();
   await page.locator('#rName').fill('<img src=x onerror=alert(1)>');
   await page.locator('#rShop').fill('テストショップ');
@@ -41,6 +42,7 @@ test('purchase records can be created, edited, persisted and deleted safely', as
 });
 
 test('deadlines are saved and reflected in the dashboard counters', async ({ page }) => {
+  await page.getByRole('button', { name: /期限管理/ }).click();
   const tomorrow = new Date();
   tomorrow.setDate(tomorrow.getDate() + 2);
   const date = [tomorrow.getFullYear(), String(tomorrow.getMonth()+1).padStart(2,'0'), String(tomorrow.getDate()).padStart(2,'0')].join('-');

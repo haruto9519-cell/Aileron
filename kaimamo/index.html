@@ -430,48 +430,7 @@ function deleteWorkspaceCase(id){if(!confirm('この案件を削除しますか�
 function openWorkspaceTool(panel){if(!selectedCaseId){showToast('先に案件を選択してください');return}const c=db.cases.find(x=>x.id===selectedCaseId);if(!c)return;selectWorkspaceCase(c.id);showPanel(panel)}
 
 function generateReport(){const v=id=>document.getElementById(id).value.trim(),title=v('reportCase')||'購入トラブル相談レポート',events=db.timeline.filter(x=>(selectedCaseId&&x.caseId===selectedCaseId)||(!selectedCaseId&&(!v('reportCase')||x.name===v('reportCase')))).sort((a,b)=>a.date.localeCompare(b.date)),risk=db.riskChecks.filter(x=>(selectedCaseId&&x.caseId===selectedCaseId)||(!selectedCaseId&&x.product===v('reportCase'))),seller=db.sellerChecks.filter(x=>selectedCaseId&&x.caseId===selectedCaseId);currentReport=title+'\n\n購入先：'+(v('reportShop')||'未入力')+'\n日付・経緯：'+(v('reportDates')||'未入力')+'\n\n相談内容・希望：\n'+(v('reportIssue')||'未入力')+'\n\n購入前診断：\n'+(risk.length?risk.map(x=>'確認済み '+x.checked.length+'/6：'+x.checked.join('、')+'。気になる点：'+(x.memo||'なし')).join('\n'):'記録なし')+'\n\n事業者確認：\n'+(seller.length?seller.map(x=>x.name+'：確認済み '+x.checked.length+'/6（'+x.checked.join('、')+'）').join('\n'):'記録なし')+'\n\n関連記録：\n'+events.map(x=>new Date(x.date).toLocaleString('ja-JP')+' ['+x.type+'] '+x.note).join('\n')+'\n\n※入力情報の整理用です。証拠原本は別途保管してください。';const b=document.getElementById('reportPreview');b.className='result show neutral';b.textContent=currentReport}
-function printReport(){if(!currentReport)generateReport();const w=window.open('','_blank');if(!w){showToast('ポップアップを許可して再度お試しください');return}w.document.write('<!doctype html><html lang="ja"><meta charset="utf-8"><title>相談レポート</title><body style="font-family:sans-serif;max-width:800px;margin:40px auto;line-height:1.8"><h1>買いまも｜相談レポート</h1><pre style="white-space:pre-wrap;font:inherit">'+esc(currentReport)+'</pre><script>window.onload=()=>window.print()<\\/script>
-<style>
-/* Final visual direction: calm, practical, and service-focused */
-:root{--navy:#243746;--navy2:#344b5b;--teal:#526f69;--mint:#edf1ef;--ink:#2d3b43;--muted:#737f84;--line:#e1e5e3;--bg:#f7f8f7;--shadow:0 2px 10px rgba(30,45,50,.035)}
-body{background:#f7f8f7;color:#2d3b43}
-.hero{background:#e9eeeb;color:#243746;padding:54px 0 58px}
-.hero:before{height:2px;background:#344b5b}
-.hero h1{font-size:clamp(30px,4.3vw,44px);font-weight:700;letter-spacing:-.035em;line-height:1.5}
-.hero p{color:#52616a;max-width:610px;font-size:14px;line-height:2.05}
-.eyebrow{color:#687d76;letter-spacing:.14em;font-weight:650}
-.btn{border-radius:4px;font-weight:600;box-shadow:none!important}
-.btn-primary{background:#435f58}
-.btn-primary:hover{background:#344d47}
-.btn-ghost{background:transparent;border:1px solid #aebbb6;color:#344b5b}
-.btn-light,.btn-outline{border:1px solid #dce2df}
-.stats{margin-top:-18px;gap:10px}
-.stat{border-radius:4px;box-shadow:none;padding:15px 17px;background:#fff}
-.stat:hover{transform:none;box-shadow:none}
-.stat-value{font-size:25px;font-weight:650}
-.layout{gap:17px}
-.sidebar{border-radius:4px;box-shadow:none;background:#fff}
-.navbtn{border-radius:3px;font-weight:550}
-.navbtn.active{background:#edf2ef;color:#405f56}
-.navbtn.active:before{background:#526f69}
-.card{border-radius:4px;box-shadow:none;border:1px solid #e1e5e3;padding:21px}
-.card h3{font-weight:700}
-.section-head h2{font-size:23px;font-weight:700;letter-spacing:-.025em}
-.field input,.field select,.field textarea{border-radius:3px;box-shadow:none}
-.field input:focus,.field select:focus,.field textarea:focus{box-shadow:0 0 0 2px #526f6915;border-color:#81978f}
-.checkitem,.guide{border-radius:3px;box-shadow:none}
-.checkitem:has(input:checked){background:#f1f5f2;border-color:#c4d1ca}
-.result,.tag,.toast{border-radius:3px}
-.guide:hover{transform:none;box-shadow:none}
-.stat-label,.field label{font-weight:600}
-.footer{background:#f7f8f7}
-@media(max-width:800px){.hero{padding:42px 0 48px}.stats{margin-top:-12px}.card{padding:16px}}
-</style>
-
-
-
-
-</body></html>');w.document.close()}
+function printReport(){if(!currentReport)generateReport();const w=window.open('','_blank');if(!w){showToast('ポップアップを許可して再度お試しください');return}w.document.open();w.document.write('<!doctype html><html lang="ja"><meta charset="utf-8"><title>相談レポート</title><body style="font-family:sans-serif;max-width:800px;margin:40px auto;line-height:1.8"><h1>買いまも｜相談レポート</h1><pre id="reportText" style="white-space:pre-wrap;font:inherit"></pre></body></html>');w.document.close();w.document.getElementById('reportText').textContent=currentReport;w.focus();w.print()}
 
 function makeReturnPlan(){const t=document.getElementById('returnIssue').value,shop=document.getElementById('returnShop').value.trim(),details=document.getElementById('returnDetails').value.trim();const plans={return:['購入時の返品・交換条件と期限を確認する','未使用条件・送料負担・返送方法を確認する','商品状態・注文情報・ショップとのやり取りを保存する','ショップの公式窓口から希望内容を連絡する'], 'not-arrived':['注文履歴・発送通知・配送状況を確認する','予定日を過ぎている場合はショップの公式窓口に注文番号を添えて問い合わせる','決済明細と連絡履歴を保存する','解決しない場合は決済事業者や消費生活相談窓口に相談する'],damaged:['商品全体・不具合箇所・梱包の写真を撮る','使用や修理を進める前に購入先の案内を確認する','注文情報と商品説明を保存する','交換・返品・返金のどれを希望するか整理して公式窓口へ連絡する'],refund:['返品受付・返送・キャンセルの完了状況を確認する','返金予定日と返金方法を公式窓口に確認する','決済明細・受付番号・連絡履歴を保存する','カード会社等の決済事業者にも公式窓口から確認する'],cancel:['注文状況とキャンセル条件を確認する','発送前か発送後かを確認する','公式窓口からキャンセル希望を連絡し受付記録を保存する','請求が残る場合は決済事業者にも確認する']};const title=document.getElementById('returnIssue').selectedOptions[0].textContent;const box=document.getElementById('returnPlan');box.className='result show neutral';box.innerHTML='<h4>'+esc(title)+'：確認する順番</h4><p>ショップ：'+esc(shop||'未入力')+'</p>'+plans[t].map((x,i)=>'<p>'+(i+1)+'. '+x+'</p>').join('')+(details?'<p><b>入力した状況：</b>'+esc(details)+'</p>':'')+'<p><b>注意：</b>購入先の規約・商品・取引状況で対応は異なります。期限や条件は購入時の表示と公式窓口で確認してください。</p>'}
 function saveCase(){const name=document.getElementById('caseName').value.trim();if(!name){showToast('案件名を入力してください');return}db.cases.unshift({id:uid(),name,status:document.getElementById('caseStatus').value,memo:document.getElementById('caseMemo').value.trim(),updatedAt:new Date().toISOString()});persist();renderCases();document.getElementById('caseName').value='';document.getElementById('caseMemo').value='';showToast('案件を保存しました')}

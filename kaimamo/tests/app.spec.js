@@ -118,9 +118,7 @@ test('subscription renewal is saved and counted on the dashboard', async ({ page
 
 test('message maker generates a contextual support message', async ({ page }) => {
   await page.locator('[data-panel="message"]').click();
-  await page.locator('#msgType').selectOption('not-arrived').catch(async () => {
-    await page.locator('#msgType').selectOption('delivery');
-  });
+  await page.locator('#msgType').selectOption('delivery');
   await page.locator('#msgShop').fill('テストショップ');
   await page.locator('#msgProduct').fill('テスト商品');
   await page.locator('#msgOrder').fill('ORDER-123');

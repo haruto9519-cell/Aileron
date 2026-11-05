@@ -6,7 +6,7 @@ test.beforeEach(async ({ page }) => {
 
 test('home screen and navigation render', async ({ page }) => {
   await expect(page).toHaveTitle(/買いまも/);
-  await expect(page.getByRole('heading', { name: /買い物の不安を/ })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /ネット通販の購入記録・返品期限/ })).toBeVisible();
   await page.getByRole('button', { name: /ショップをチェックする/ }).first().click();
   await expect(page.locator('#panel-safety')).toHaveClass(/active/);
 });

@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" href="./aileron-logo.png">
   
 
-<title>Aileron｜旅と暮らしを支えるWebサービス</title>
+<title>Aileron｜旅・暮らし・買い物を支えるWebサービス</title>
 
 <meta name="description" content="Aileronは、旅・暮らし・日々の買い物を支えるWebサービスを企画・運営しています。「旅比べ」「LIFE SHIFT」「買いまも（仮称）」などを展開しています。">
 
@@ -17,7 +17,7 @@
 <meta name="format-detection" content="telephone=no">
 <link rel="canonical" href="https://haruto9519-cell.github.io/Aileron/">
 
-<meta property="og:title" content="Aileron｜旅と暮らしを支えるWebサービス">
+<meta property="og:title" content="Aileron｜旅・暮らし・買い物を支えるWebサービス">
 <meta property="og:description" content="Aileronは、旅・暮らし・買い物の選択を支えるWebサービスを企画・運営しています。「旅比べ」「LIFE SHIFT」「買いまも（仮称）」をご紹介します。">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ja_JP">
@@ -27,8 +27,8 @@
 <meta property="og:image:alt" content="人々の活動を支える現代的な空間">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Aileron｜旅行比較「旅比べ」・暮らしの準備管理「LIFE SHIFT」">
-<meta name="twitter:description" content="旅と暮らしを支えるWebサービスを企画・運営するAileronの公式サイトです。">
+<meta name="twitter:title" content="Aileron｜旅・暮らし・買い物を支えるWebサービス">
+<meta name="twitter:description" content="旅・暮らし・買い物の選択を支えるWebサービスを企画・運営するAileronの公式サイトです。">
 <meta name="twitter:image" content="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1200&q=85">
 <script type="application/ld+json">
 {
@@ -268,7 +268,7 @@ img {
   background: linear-gradient(90deg,rgba(6,18,32,.88),rgba(6,18,32,.24));
 }
 .hero-service-card > * { position: relative; z-index: 1; }
-.hero-service-card.travel {
+ .hero-service-card.buy {\n  background-image: url("https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1000&q=85");\n}\n.hero-service-card.travel {
   background-image: url("https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1000&q=85");
 }
 .hero-service-card.life {
@@ -411,7 +411,7 @@ img {
 
 .feature-grid {
   display: grid;
-  grid-template-columns: repeat(4,minmax(0,1fr));
+  grid-template-columns: repeat(auto-fit,minmax(205px,1fr));
   gap: 22px;
   margin-top: 60px;
 }
@@ -1123,7 +1123,7 @@ img {
       </p>
       <div class="hero-buttons">
         <a href="https://tabi-hikaku.pages.dev/" class="button button-primary" target="_blank" rel="noopener noreferrer">OPEN TABI-HIKAKU <span>→</span></a>
-        <a href="https://lifeshift.pages.dev/" class="button button-outline" target="_blank" rel="noopener noreferrer">OPEN LIFE SHIFT <span>→</span></a>
+        <a href="https://lifeshift.pages.dev/" class="button button-outline" target="_blank" rel="noopener noreferrer">OPEN LIFE SHIFT <span>→</span></a>\n        <a href="#kaimamo" class="button button-outline">EXPLORE 買いまも <span>→</span></a>
         <a href="#contact" class="button button-outline">BUSINESS INQUIRY <span>↗</span></a>
       </div>
     </div>
@@ -1600,7 +1600,7 @@ img {
           <th>事業内容</th>
           <td>
             総合旅行比較サービス「旅比べ」の運営<br>
-            暮らしの変化を支えるWebサービス「LIFE SHIFT」の運営<br>
+            暮らしの変化を支えるWebサービス「LIFE SHIFT」の運営<br>\n            消費者向け購入サポートサービス「買いまも（仮称）」の企画・開発準備<br>
             Webサービスの企画・開発・運営<br>
             観光・地域事業者の集客支援<br>
             広告・プロモーション
@@ -1662,7 +1662,7 @@ img {
         </label>
         <select id="category" name="category" required>
           <option value="">選択してください</option>
-          <option>サービスについて</option>
+          <option>サービスについて</option>\n          <option>買いまも（仮称）について</option>
           <option>観光事業者様・掲載について</option>
           <option>集客・広告について</option>
           <option>協業・提携について</option>

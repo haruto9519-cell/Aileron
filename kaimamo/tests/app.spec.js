@@ -12,6 +12,7 @@ test('home screen and navigation render', async ({ page }) => {
 });
 
 test('shop checker rejects malformed URLs and explains its limits', async ({ page }) => {
+  await page.locator('[data-panel="safety"]').click();
   await page.locator('#shopUrl').fill('not-a-url');
   await page.getByRole('button', { name: 'チェック結果を見る' }).click();
   await expect(page.locator('#shopResult')).toContainText('URLを確認してください');
@@ -23,8 +24,8 @@ test('shop checker rejects malformed URLs and explains its limits', async ({ pag
   await expect(page.locator('#shopResult')).toContainText('安全を保証しません');
 });
 
-test('purchase records can be created, edited, persisted and deleted safely', async ({ page }) => {
-  await page.getByRole('button', { name: /購入記録/ }).click();
+test('purchase records can be created, persisted and deleted safely', async ({ page }) => {
+  await page.locator('[data-panel="records"]').click();
   await page.getByRole('button', { name: /購入を追加/ }).click();
   await page.locator('#rName').fill('<img src=x onerror=alert(1)>');
   await page.locator('#rShop').fill('テストショップ');
@@ -36,7 +37,7 @@ test('purchase records can be created, edited, persisted and deleted safely', as
   await expect(page.locator('#recordsBody img')).toHaveCount(0);
   await page.reload();
   await expect(page.locator('#statRecords')).toHaveText('1');
-  await page.getByRole('button', { name: /購入記録/ }).click();
+  await page.locator('[data-panel="records"]').click();
   page.once('dialog', dialog => dialog.accept());
   await page.getByRole('button', { name: '削除' }).click();
   await expect(page.locator('#statRecords')).toHaveText('0');
@@ -60,5 +61,5 @@ test('backup export starts a JSON download', async ({ page }) => {
   const downloadPromise = page.waitForEvent('download');
   await page.getByRole('button', { name: '書き出す' }).click();
   const download = await downloadPromise;
-  expect(download.suggestedFilename()).toMatch(/^kaimamo-backup-.*\\.json$/);
+  expect(download.suggestedFilename()).toMatch(/^kaimamo-backup-.*\.json$/);
 });

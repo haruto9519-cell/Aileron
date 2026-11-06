@@ -2,51 +2,84 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#091326">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080f20">
+<meta name="description" content="パネルを回して光のルートをつなぐ無料ブラウザパズル LOOP SHIFT。全5ステージに挑戦しよう。">
 <title>LOOP SHIFT — Aileron Game Studio</title>
 <style>
-:root{color-scheme:dark;--bg:#091326;--panel:#111f38;--line:#263a5d;--cyan:#56e4ff;--gold:#ffd36e;--muted:#9eb0ca}
-*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -10%,#1b3960 0,transparent 55%),var(--bg);color:#f4f7ff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;display:flex;justify-content:center;padding:24px 14px}
-main{width:min(100%,650px)}header{text-align:center;margin:8px 0 22px}.brand{letter-spacing:.22em;color:var(--gold);font-size:11px;font-weight:800}.logo{font-size:clamp(30px,8vw,48px);font-weight:900;letter-spacing:.08em;margin:7px 0}.tag{color:var(--muted);font-size:14px}
-.panel{background:linear-gradient(160deg,#142643,#0e1a30);border:1px solid #2a4165;border-radius:22px;padding:18px;box-shadow:0 18px 55px #0005}
-.top{display:flex;justify-content:space-between;gap:10px;margin-bottom:15px}.stat{background:#091629;border:1px solid var(--line);border-radius:12px;padding:9px 13px;flex:1;text-align:center}.stat small{display:block;color:var(--muted);font-size:11px}.stat strong{font-size:20px}
-.board{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;max-width:470px;margin:auto;touch-action:manipulation}
-.tile{aspect-ratio:1;border:1px solid #2b4265;border-radius:12px;background:#0a172b;display:grid;place-items:center;position:relative;padding:0;cursor:pointer;overflow:hidden}
-.tile.active{background:linear-gradient(145deg,#172b49,#0c1a30);border-color:#3d5d88}.tile:focus-visible{outline:3px solid var(--gold);outline-offset:2px}.tile svg{width:88%;height:88%;overflow:visible}.pipe{stroke:#506785;stroke-width:11;stroke-linecap:round;fill:none}.tile.connected .pipe{stroke:var(--cyan);filter:drop-shadow(0 0 5px #56e4ff88)}.hub{fill:#506785}.tile.connected .hub{fill:var(--cyan)}.tile .endpoint{position:absolute;font-size:9px;font-weight:900;letter-spacing:.04em;color:var(--gold);top:5px}.tile.start .endpoint{left:5px}.tile.goal .endpoint{right:5px}
-.hint{text-align:center;color:var(--muted);font-size:12px;margin:14px 0 0}.actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px}button.action{border:0;border-radius:999px;padding:12px 20px;font-weight:800;cursor:pointer}.primary{background:var(--gold);color:#172033}.secondary{background:#1b3151;color:#eaf3ff;border:1px solid #38547c!important}
-#message{text-align:center;min-height:48px;padding:16px 4px 0;color:#dce9fb;font-weight:650}.foot{text-align:center;color:#7185a4;font-size:11px;margin:18px 0 0}
-@media(max-width:420px){body{padding:12px 9px}.panel{padding:12px}.board{gap:5px}.tile{border-radius:9px}.stat{padding:8px 5px}.stat strong{font-size:18px}}
+:root{color-scheme:dark;--bg:#080f20;--panel:#101d34;--panel2:#142541;--line:#2a4164;--cyan:#63eaff;--gold:#ffd477;--muted:#9aacc7;--green:#8af0c1}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -12%,#254b78 0,transparent 48%),linear-gradient(180deg,#080f20,#0b1428 70%,#080f20);color:#f5f8ff;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;display:flex;justify-content:center;padding:clamp(12px,3vw,28px) 12px 32px}
+main{width:min(100%,660px)}header{text-align:center;margin:4px 0 18px}.brand{font-size:10px;font-weight:900;letter-spacing:.28em;color:var(--gold)}h1{font-size:clamp(34px,9vw,54px);line-height:1;margin:9px 0 8px;letter-spacing:.09em;font-weight:950}.tag{color:var(--muted);font-size:13px;letter-spacing:.04em}
+.panel{background:linear-gradient(155deg,#152744ed,#0e192ded);border:1px solid #30496d;border-radius:24px;padding:clamp(13px,3vw,21px);box-shadow:0 22px 70px #0007}
+.levelbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:13px}.levelname{font-size:13px;font-weight:850;letter-spacing:.08em}.levelname span{color:var(--gold)}.progress{display:flex;gap:5px}.dot{width:7px;height:7px;border-radius:50%;background:#344967}.dot.done{background:var(--cyan);box-shadow:0 0 9px #63eaff88}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}.stat{background:#091529;border:1px solid var(--line);border-radius:13px;padding:8px 6px;text-align:center}.stat small{display:block;color:var(--muted);font-size:10px;letter-spacing:.08em}.stat strong{display:block;font-size:clamp(18px,4vw,23px);font-variant-numeric:tabular-nums;margin-top:1px}
+.board-wrap{position:relative;max-width:470px;margin:auto;padding:8px;border:1px solid #243b5d;border-radius:19px;background:linear-gradient(145deg,#09162b,#0b1930);box-shadow:inset 0 1px 15px #0005}
+.board{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;touch-action:manipulation}
+.tile{aspect-ratio:1;border:1px solid #263e61;border-radius:12px;background:linear-gradient(145deg,#0c1a30,#091427);display:grid;place-items:center;position:relative;padding:0;cursor:pointer;overflow:hidden;transition:border-color .15s,background .15s,transform .12s}
+.tile:active:not(:disabled){transform:scale(.94)}.tile.active{background:linear-gradient(145deg,#172b49,#0d1b31);border-color:#3d5c82}.tile:disabled{cursor:default;opacity:.48}.tile:focus-visible{outline:3px solid var(--gold);outline-offset:2px}.tile svg{width:88%;height:88%;overflow:visible}
+.pipe{stroke:#506783;stroke-width:11;stroke-linecap:round;fill:none;transition:stroke .18s}.tile.connected .pipe{stroke:var(--cyan);filter:drop-shadow(0 0 5px #56e4ff99)}.hub{fill:#506783}.tile.connected .hub{fill:var(--cyan)}.endpoint{position:absolute;top:4px;font-size:clamp(7px,1.8vw,9px);font-weight:950;letter-spacing:.03em;color:var(--gold);z-index:1}.start .endpoint{left:4px}.goal .endpoint{right:4px}
+.hint{text-align:center;color:var(--muted);font-size:12px;line-height:1.65;margin:13px 0 0}.message{min-height:47px;display:grid;place-items:center;text-align:center;padding:11px 5px 0;font-size:13px;font-weight:750;color:#e4efff}.message.win{color:var(--green)}
+.actions{display:flex;justify-content:center;gap:9px;flex-wrap:wrap;margin-top:13px}button.action{border:1px solid transparent;border-radius:999px;padding:11px 17px;font:inherit;font-size:12px;font-weight:900;cursor:pointer;transition:transform .12s,filter .12s}button.action:active{transform:scale(.96)}.primary{background:linear-gradient(135deg,#ffe39b,#ffc85c);color:#18243a;box-shadow:0 5px 18px #ffce6540}.secondary{background:#1b3151;color:#edf5ff;border-color:#3a5579!important}.quiet{background:transparent;color:var(--muted);border-color:#344966!important}
+.levels{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin-top:16px}.levelbtn{border:1px solid #304765;background:#0b182c;color:#aebed5;border-radius:12px;padding:10px 3px;cursor:pointer;font-weight:850;font-size:12px}.levelbtn small{display:block;font-size:9px;font-weight:650;margin-top:3px;color:#8194b1}.levelbtn.current{border-color:var(--gold);color:var(--gold);background:#302a1c}.levelbtn:disabled{opacity:.38;cursor:not-allowed}
+.footer{text-align:center;color:#647a9b;font-size:10px;margin:17px 0 0;letter-spacing:.04em}
+.overlay{position:fixed;inset:0;background:#030916c9;display:none;place-items:center;padding:20px;z-index:5}.overlay.show{display:grid}.modal{width:min(100%,360px);background:linear-gradient(150deg,#1a3152,#101c32);border:1px solid #4a668b;border-radius:23px;padding:25px;text-align:center;box-shadow:0 25px 90px #000a}.stars{font-size:31px;letter-spacing:7px;color:var(--gold);margin:4px}.modal h2{margin:8px 0;font-size:26px}.modal p{color:var(--muted);font-size:13px;line-height:1.6}.modal .actions{margin-top:18px}
+@media(max-width:420px){.board{gap:5px}.tile{border-radius:9px}.board-wrap{padding:6px}.panel{border-radius:19px}.stats{gap:5px}.stat{padding:7px 4px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
 <body>
 <main>
-<header><div class="brand">AILERON GAME STUDIO</div><h1 class="logo">LOOP SHIFT</h1><div class="tag">回して、つないで、ゴールへ。</div></header>
-<section class="panel" aria-label="ゲーム">
-<div class="top"><div class="stat"><small>残り手数</small><strong id="moves">12</strong></div><div class="stat"><small>ステージ</small><strong>01</strong></div><div class="stat"><small>ベスト</small><strong id="best">—</strong></div></div>
-<div class="board" id="board" aria-label="パズル盤面"></div>
-<p class="hint">パネルをタップして回転。青く光る道をつないで右のゴールを目指そう。</p>
-<div id="message" role="status" aria-live="polite">スタートからゴールまで、光のルートを完成させよう。</div>
-<div class="actions"><button class="action primary" id="reset">やり直す</button><button class="action secondary" id="hint">ヒント</button></div>
+<header><div class="brand">AILERON GAME STUDIO</div><h1>LOOP SHIFT</h1><div class="tag">ROTATE · CONNECT · CLEAR</div></header>
+<section class="panel" aria-label="LOOP SHIFT パズル">
+<div class="levelbar"><div class="levelname">STAGE <span id="stageNum">01</span> <span id="stageTitle">／ FIRST LINK</span></div><div class="progress" id="progress" aria-label="進行状況"></div></div>
+<div class="stats">
+<div class="stat"><small>REMAINING</small><strong id="moves">—</strong></div>
+<div class="stat"><small>TIME</small><strong id="time">00:00</strong></div>
+<div class="stat"><small>BEST</small><strong id="best">—</strong></div>
+</div>
+<div class="board-wrap"><div class="board" id="board" aria-label="5かける5のパズル盤面"></div></div>
+<p class="hint">パネルをタップして回転。青く光る道を START から GOAL までつなごう。<br>少ない手数でクリアすると、獲得スターが増える！</p>
+<div class="message" id="message" role="status" aria-live="polite">ルートをつないで、最初のステージをクリアしよう。</div>
+<div class="actions"><button class="action primary" id="reset">↻ リスタート</button><button class="action secondary" id="hint">✦ ヒント</button><button class="action quiet" id="sound" aria-pressed="false">♪ SOUND OFF</button></div>
+<div class="levels" id="levels" aria-label="ステージ選択"></div>
 </section>
-<p class="foot">© 2026 Aileron Game Studio · Prototype 0.1</p>
+<p class="footer">© 2026 AILERON GAME STUDIO · LOOP SHIFT</p>
 </main>
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="winTitle">
+<div class="modal"><div class="stars" id="stars">★★★</div><h2 id="winTitle">STAGE CLEAR!</h2><p id="winText">ナイスルート！</p><div class="actions"><button class="action secondary" id="again">もう一度</button><button class="action primary" id="next">次のステージ →</button></div></div>
+</div>
 <script>
-const N=5, START=10, GOAL=14, LIMIT=14;
-const route=[10,11,6,7,8,13,14];
-// Direction order: up, right, down, left
-const base={10:[1],11:[3,0],6:[2,1],7:[3,1],8:[3,2],13:[0,1],14:[3]};
-let tiles=[],moves=LIMIT,done=false;
-const board=document.getElementById('board'),movesEl=document.getElementById('moves'),message=document.getElementById('message');
-const rotate=d=>d.map(x=>(x+1)%4);
-function ports(t){let p=base[t.id]||[];for(let i=0;i<t.rot;i++)p=rotate(p);return p}
-function makeGame(){tiles=Array.from({length:25},(_,id)=>({id,rot:route.includes(id)?1+Math.floor(Math.random()*2):0}));moves=LIMIT;done=false;render();message.textContent='スタートからゴールまで、光のルートを完成させよう。';}
-function connected(){const seen=new Set([START]),q=[START];while(q.length){const id=q.shift(),r=Math.floor(id/N),c=id%N;for(const d of ports(tiles[id])){const nr=r+[-1,0,1,0][d],nc=c+[0,1,0,-1][d];if(nr<0||nr>=N||nc<0||nc>=N)continue;const ni=nr*N+nc;if(ports(tiles[ni]).includes((d+2)%4)&&!seen.has(ni)){seen.add(ni);q.push(ni)}}}return seen}
-function svgFor(t,lit){const dirs=ports(t),coords=[[50,0],[100,50],[50,100],[0,50]];let lines=dirs.map(d=>'<line class="pipe" x1="50" y1="50" x2="'+coords[d][0]+'" y2="'+coords[d][1]+'"/>').join('');return '<svg viewBox="0 0 100 100" aria-hidden="true">'+lines+'<circle class="hub" cx="50" cy="50" r="8"/></svg>'}
-function render(){const seen=connected();board.innerHTML='';tiles.forEach(t=>{const b=document.createElement('button');b.className='tile'+(route.includes(t.id)?' active':'')+(seen.has(t.id)?' connected':'')+(t.id===START?' start':'')+(t.id===GOAL?' goal':'');b.type='button';b.setAttribute('aria-label','パネル '+(t.id+1)+' を回転');if(t.id===START||t.id===GOAL){const e=document.createElement('span');e.className='endpoint';e.textContent=t.id===START?'START':'GOAL';b.append(e)}b.insertAdjacentHTML('beforeend',svgFor(t,seen.has(t.id)));if(route.includes(t.id))b.addEventListener('click',()=>turn(t.id));else b.disabled=true;board.append(b)});movesEl.textContent=moves;const best=localStorage.getItem('loopshift-best');document.getElementById('best').textContent=best?best+'手':'—';if(seen.has(GOAL)){done=true;message.textContent='CLEAR! '+(LIMIT-moves)+'手でルート完成！';if(!best||LIMIT-moves<Number(best))localStorage.setItem('loopshift-best',String(LIMIT-moves));document.getElementById('best').textContent=localStorage.getItem('loopshift-best')+'手';}}
-function turn(id){if(done||moves<=0)return;tiles[id].rot=(tiles[id].rot+1)%4;moves--;render();if(!done&&moves===0)message.textContent='手数終了。やり直して別のルートを探そう！'}
-document.getElementById('reset').addEventListener('click',makeGame);
-document.getElementById('hint').addEventListener('click',()=>{if(done)return;message.textContent='ヒント：STARTから右へ進み、上段を通ってから下へ折り返そう。'});
-makeGame();
+'use strict';
+const SIZE=5, STORE='loopshift-progress-v2';
+const stages=[
+{name:'FIRST LINK',path:[10,11,6,7,8,13,14]},
+{name:'UP & OVER',path:[20,15,10,11,12,7,2,3,4]},
+{name:'ZIGZAG',path:[5,6,11,10,15,16,17,12,7]},
+{name:'THE LONG WAY',path:[0,1,2,7,12,11,16,21,22,23,18,13]},
+{name:'FINAL CIRCUIT',path:[20,15,10,5,6,7,12,17,18,13,8,3,4,9,14,19,24]}
+];
+const $=id=>document.getElementById(id);
+let stage=0,tiles=[],moves=0,initialMoves=0,finished=false,startedAt=0,tick=null,soundOn=false,progress=loadProgress(),hintUsed=false;
+const dirs=[[-1,0],[0,1],[1,0],[0,-1]], opposite=d=>(d+2)%4, rotate=p=>p.map(d=>(d+1)%4);
+function loadProgress(){try{return JSON.parse(localStorage.getItem(STORE))||{unlocked:1,best:{},stars:{}}}catch{return{unlocked:1,best:{},stars:{}}}}
+function saveProgress(){localStorage.setItem(STORE,JSON.stringify(progress))}
+function baseForPath(path){const map={};path.forEach((id,i)=>{const r=Math.floor(id/SIZE),c=id%SIZE,ports=[];if(i>0){const prev=path[i-1],pr=Math.floor(prev/SIZE),pc=prev%SIZE;ports.push(pr<r?0:pr>r?2:pc>c?3:1)}if(i<path.length-1){const next=path[i+1],nr=Math.floor(next/SIZE),nc=next%SIZE;ports.push(nr<r?0:nr>r?2:nc>c?1:3)}map[id]=ports});return map}
+function playTone(freq=620,duration=.07){if(!soundOn)return;try{const ctx=new(window.AudioContext||window.webkitAudioContext)(),o=ctx.createOscillator(),g=ctx.createGain();o.frequency.value=freq;o.type='sine';g.gain.setValueAtTime(.055,ctx.currentTime);g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+duration);o.connect(g);g.connect(ctx.destination);o.start();o.stop(ctx.currentTime+duration);o.onended=()=>ctx.close()}catch{}}
+function loadStage(index){stage=index;finished=false;hintUsed=false;$('overlay').classList.remove('show');const data=stages[stage],base=baseForPath(data.path);tiles=Array.from({length:25},(_,id)=>({id,rot:0,base:base[id]||[]}));let required=0;data.path.forEach(id=>{const rot=1+Math.floor(Math.random()*3);tiles[id].rot=rot;required+=4-rot});initialMoves=required+2;moves=initialMoves;startedAt=Date.now();clearInterval(tick);tick=setInterval(updateTime,1000);$('stageNum').textContent=String(stage+1).padStart(2,'0');$('stageTitle').textContent='／ '+data.name;$('message').className='message';$('message').textContent='STARTからGOALまで、光の道をつなごう。';render();renderLevels();updateTime()}
+function ports(t){let p=t.base.slice();for(let i=0;i<t.rot;i++)p=rotate(p);return p}
+function connected(){const seen=new Set([stages[stage].path[0]]),queue=[stages[stage].path[0]];while(queue.length){const id=queue.shift(),r=Math.floor(id/SIZE),c=id%SIZE;for(const d of ports(tiles[id])){const nr=r+dirs[d][0],nc=c+dirs[d][1];if(nr<0||nr>=SIZE||nc<0||nc>=SIZE)continue;const ni=nr*SIZE+nc;if(ports(tiles[ni]).includes(opposite(d))&&!seen.has(ni)){seen.add(ni);queue.push(ni)}}}return seen}
+function svgFor(t){const coords=[[50,0],[100,50],[50,100],[0,50]],lines=ports(t).map(d=>'<line class="pipe" x1="50" y1="50" x2="'+coords[d][0]+'" y2="'+coords[d][1]+'"/>').join('');return '<svg viewBox="0 0 100 100" aria-hidden="true">'+lines+'<circle class="hub" cx="50" cy="50" r="8"/></svg>'}
+function render(){const seen=connected(),path=stages[stage].path,board=$('board');board.innerHTML='';tiles.forEach(t=>{const b=document.createElement('button');b.type='button';b.className='tile'+(path.includes(t.id)?' active':'')+(seen.has(t.id)?' connected':'')+(t.id===path[0]?' start':'')+(t.id===path[path.length-1]?' goal':'');b.disabled=!path.includes(t.id)||finished||moves<=0;b.setAttribute('aria-label',(t.id===path[0]?'スタート':t.id===path[path.length-1]?'ゴール':'パネル')+' '+(t.id+1)+' を回転');if(t.id===path[0]||t.id===path[path.length-1]){const e=document.createElement('span');e.className='endpoint';e.textContent=t.id===path[0]?'START':'GOAL';b.append(e)}b.insertAdjacentHTML('beforeend',svgFor(t));if(path.includes(t.id))b.addEventListener('click',()=>turn(t.id));board.append(b)});$('moves').textContent=moves;$('best').textContent=progress.best[stage]??'—';if(seen.has(path[path.length-1])&&!finished)clearStage();if(moves===0&&!finished&&!seen.has(path[path.length-1])){$('message').textContent='手数切れ！リスタートして別の配置に挑戦しよう。'}}
+function turn(id){if(finished||moves<=0)return;tiles[id].rot=(tiles[id].rot+1)%4;moves--;playTone(480+tiles[id].rot*100);render()}
+function updateTime(){if(!startedAt)return;const s=Math.floor((Date.now()-startedAt)/1000);$('time').textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
+function clearStage(){finished=true;clearInterval(tick);const used=initialMoves-moves,stars=used<=initialMoves-2?3:used<=initialMoves-1?2:1;const old=progress.stars[stage]||0;progress.stars[stage]=Math.max(old,stars);progress.unlocked=Math.max(progress.unlocked,Math.min(stages.length,stage+2));const best=progress.best[stage];if(best===undefined||used<best)progress.best[stage]=used;saveProgress();playTone(880,.2);$('message').className='message win';$('message').textContent='CLEAR! '+stars+' STAR'+(stars>1?'S':'');$('stars').textContent='★'.repeat(stars)+'☆'.repeat(3-stars);$('winText').textContent='使用 '+used+' 手でクリア！ '+(stars===3?'パーフェクト！':stars===2?'あと少しで3スター！':'クリアおめでとう！');$('next').style.display=stage===stages.length-1?'none':'inline-block';$('overlay').classList.add('show');render();renderLevels()}
+function renderLevels(){const box=$('levels');box.innerHTML='';$('progress').innerHTML='';stages.forEach((s,i)=>{const d=document.createElement('span');d.className='dot'+(i<stage?' done':'');$('progress').append(d);const b=document.createElement('button');b.className='levelbtn'+(i===stage?' current':'');b.disabled=i+1>progress.unlocked;b.innerHTML='0'+(i+1)+'<small>'+(progress.stars[i]?'★'.repeat(progress.stars[i]):i+1>progress.unlocked?'LOCK':'PLAY')+'</small>';b.addEventListener('click',()=>loadStage(i));box.append(b)})}
+$('reset').addEventListener('click',()=>loadStage(stage));
+$('hint').addEventListener('click',()=>{if(finished)return;hintUsed=true;$('message').textContent='ヒント：青く光っていないパネルを1枚ずつ回し、隣同士の端を合わせよう。手数を節約して3スターを目指せ！';playTone(700)});
+$('sound').addEventListener('click',()=>{soundOn=!soundOn;$('sound').textContent=soundOn?'♪ SOUND ON':'♪ SOUND OFF';$('sound').setAttribute('aria-pressed',String(soundOn));playTone(700)});
+$('again').addEventListener('click',()=>loadStage(stage));
+$('next').addEventListener('click',()=>loadStage(Math.min(stage+1,stages.length-1)));
+loadStage(0);
 </script>
-</body></html>
+</body>
+</html>

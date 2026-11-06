@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="求人情報を整理し、応募前に知りたいことが伝わる採用ページを無料で作成。入力内容はブラウザ内で処理されます。">
+<title>採用ページメーカー｜応募前に知りたい情報を、わかりやすく。</title>
+<style>
+:root{--navy:#13243a;--blue:#315b86;--ink:#172334;--muted:#617083;--line:#dce3eb;--paper:#f4f7fa;--white:#fff;--gold:#d5ad65}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif;line-height:1.65}
+header{background:var(--navy);color:white;padding:34px 20px}header .inner,main,.foot{max-width:1120px;margin:auto}header .eyebrow{color:#e5c98f;font-size:12px;letter-spacing:.14em;font-weight:700}h1{font-size:clamp(25px,4vw,38px);line-height:1.3;margin:8px 0}header p{color:#dce5ef;max-width:700px;margin:10px 0 0}
+main{padding:26px 18px 50px}.intro{margin-bottom:20px;color:var(--muted)}.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}.panel{background:white;border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 5px 22px #14253b0a}.panel h2{font-size:19px;margin:0 0 5px}.sub{color:var(--muted);font-size:13px;margin:0 0 18px}.field{margin:0 0 14px}label{display:block;font-weight:650;font-size:13px;margin-bottom:5px}input,textarea,select{width:100%;padding:11px 12px;border:1px solid #cbd5e1;border-radius:9px;font:inherit;font-size:14px;background:white;color:var(--ink)}textarea{min-height:82px;resize:vertical}input:focus,textarea:focus,select:focus{outline:3px solid #315b8622;border-color:var(--blue)}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.btn{border:0;border-radius:10px;padding:11px 16px;font-weight:700;cursor:pointer;background:var(--navy);color:white}.btn.secondary{background:#eaf0f6;color:var(--navy);border:1px solid var(--line)}.btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}.notice{font-size:12px;color:var(--muted);background:#f4f7fa;padding:12px;border-radius:9px;margin-top:15px}.preview-wrap{position:sticky;top:12px}.preview{border:1px solid var(--line);border-radius:13px;overflow:hidden;background:white}.preview-head{background:#edf2f7;padding:13px 16px;font-size:12px;color:#526174;font-weight:700;display:flex;justify-content:space-between}.preview-body{padding:24px}.preview-body h3{font-size:25px;line-height:1.35;margin:6px 0 12px;color:var(--navy)}.tag{display:inline-block;background:#edf3f8;color:#315b86;border-radius:30px;padding:4px 10px;font-size:12px;margin:0 5px 6px 0}.preview-body h4{font-size:15px;margin:22px 0 6px;border-bottom:1px solid var(--line);padding-bottom:6px}.preview-body p{white-space:pre-wrap;margin:5px 0;color:#435267;font-size:14px}.preview-body .salary{font-size:20px;font-weight:800;color:var(--navy)}.placeholder{color:#8b98a8!important}.faq{padding:10px 0;border-bottom:1px solid #edf0f4}.foot{padding:0 18px 30px;color:var(--muted);font-size:12px}
+@media(max-width:820px){.grid{grid-template-columns:1fr}.preview-wrap{position:static}.panel{padding:17px}}@media(max-width:460px){.two{grid-template-columns:1fr}header{padding:28px 18px}}
+</style>
+</head>
+<body>
+<header><div class="inner"><div class="eyebrow">JOB PAGE STUDIO</div><h1>応募する前に、知りたいことが分かる。</h1><p>会社や仕事の情報を入力するだけで、採用ページのたたき台を作成できます。小さな会社・店舗の採用情報を、候補者に伝わる形に整理しましょう。</p></div></header>
+<main>
+<p class="intro">無料の試作版です。入力した情報はこのブラウザ内だけで処理され、サーバーには送信されません。</p>
+<div class="grid">
+<section class="panel">
+<h2>採用情報を入力</h2><p class="sub">分かる範囲で入力してください。プレビューは入力と同時に更新されます。</p>
+<form id="jobForm">
+<div class="field"><label for="company">会社・店舗名 *</label><input id="company" required placeholder="例：サンプル工務店"></div>
+<div class="two"><div class="field"><label for="industry">業種</label><input id="industry" placeholder="例：建設業"></div><div class="field"><label for="job">募集職種 *</label><input id="job" required placeholder="例：現場スタッフ"></div></div>
+<div class="two"><div class="field"><label for="type">雇用形態</label><select id="type"><option>正社員</option><option>契約社員</option><option>パート・アルバイト</option><option>業務委託</option><option>その他</option></select></div><div class="field"><label for="location">勤務地</label><input id="location" placeholder="例：東京都○○区"></div></div>
+<div class="field"><label for="duties">仕事内容 *</label><textarea id="duties" required placeholder="具体的な業務、1日の流れなど"></textarea></div>
+<div class="field"><label for="requirements">応募条件・必要な資格</label><textarea id="requirements" placeholder="必須条件と歓迎条件を分けて書くと伝わりやすくなります"></textarea></div>
+<div class="two"><div class="field"><label for="salary">給与・報酬 *</label><input id="salary" required placeholder="例：月給○万円〜○万円"></div><div class="field"><label for="hours">勤務時間</label><input id="hours" placeholder="例：9:00〜18:00"></div></div>
+<div class="two"><div class="field"><label for="holidays">休日・休暇</label><input id="holidays" placeholder="例：週休2日、年末年始"></div><div class="field"><label for="benefits">福利厚生・待遇</label><input id="benefits" placeholder="例：社会保険、交通費支給"></div></div>
+<div class="field"><label for="culture">職場の特徴・雰囲気</label><textarea id="culture" placeholder="チーム構成、研修、仕事の進め方など。事実に基づいて記載してください"></textarea></div>
+<div class="field"><label for="steps">選考の流れ</label><textarea id="steps" placeholder="例：応募 → 面接 → 結果連絡"></textarea></div>
+<div class="field"><label for="faq">よくある質問（質問と回答をセットで）</label><textarea id="faq" placeholder="例：未経験でも応募できますか？\n回答：研修制度があります。"></textarea></div>
+<div class="actions"><button type="button" class="btn secondary" id="sample">サンプルを入力</button><button type="reset" class="btn secondary">入力をクリア</button><button type="button" class="btn" id="download">HTMLをダウンロード</button></div>
+<p class="notice">※給与・勤務時間・休日・雇用形態などは、実際の募集条件と一致しているか必ず確認してください。法令への適合や採用成果を保証するものではありません。</p>
+</form></section>
+<section class="preview-wrap"><div class="panel"><h2>採用ページのプレビュー</h2><p class="sub">入力内容がここに反映されます。</p><div class="preview"><div class="preview-head"><span>応募者向けページ</span><span>LIVE PREVIEW</span></div><div class="preview-body" id="preview" aria-live="polite"></div></div></div></section>
+</div>
+</main>
+<div class="foot">採用ページメーカー 試作版 · 入力内容はブラウザ内で処理されます。公開前に、募集主が内容の正確性・最新性を確認してください。</div>
+<script>
+const ids=['company','industry','job','type','location','duties','requirements','salary','hours','holidays','benefits','culture','steps','faq'];
+const $=id=>document.getElementById(id);
+const safe=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function data(){return Object.fromEntries(ids.map(id=>[id,$(id).value.trim()]));}
+function section(title,value){return value?'<h4>'+title+'</h4><p>'+safe(value)+'</p>':'';}
+function render(){
+ const d=data(),p=$('preview');
+ p.innerHTML='<span class="tag">'+safe(d.industry||'業種')+'</span><span class="tag">'+safe(d.type)+'</span><h3>'+safe(d.job||'募集職種')+'</h3><p><strong>'+safe(d.company||'会社・店舗名')+'</strong></p><p>'+safe(d.location||'勤務地')+'</p><p class="salary">'+safe(d.salary||'給与・報酬')+'</p>'+section('仕事内容',d.duties)+section('応募条件・必要な資格',d.requirements)+section('勤務時間',d.hours)+section('休日・休暇',d.holidays)+section('福利厚生・待遇',d.benefits)+section('職場の特徴',d.culture)+section('選考の流れ',d.steps)+section('よくある質問',d.faq);
+}
+ids.forEach(id=>$(id).addEventListener('input',render));
+$('sample').addEventListener('click',()=>{
+ const d={company:'サンプル工務店（架空）',industry:'建設業',job:'施工サポートスタッフ',type:'正社員',location:'東京都内（架空）',duties:'現場の準備や資材確認、写真整理など、施工チームのサポートを担当します。\n入社後は先輩社員と一緒に業務を覚えます。',requirements:'必須資格：募集主が確認して記載してください。\n歓迎条件：チームで協力して仕事を進められる方。',salary:'月給は募集主が実際の条件を入力してください',hours:'例：8:30〜17:30（実際の条件を要確認）',holidays:'会社カレンダーによる（実際の条件を要確認）',benefits:'制度の有無・条件を募集主が確認して記載してください',culture:'少人数のチームで情報共有しながら仕事を進めます（サンプル文）',steps:'応募 → 面接 → 結果連絡（サンプル）',faq:'Q. 未経験でも応募できますか？\nA. 応募条件や研修内容を募集主が確認して記載してください。'};
+ ids.forEach(id=>$(id).value=d[id]||'');render();
+});
+$('jobForm').addEventListener('reset',()=>setTimeout(render,0));
+$('download').addEventListener('click',()=>{
+ const d=data();
+ if(!d.company||!d.job||!d.duties||!d.salary){alert('会社・店舗名、募集職種、仕事内容、給与・報酬を入力してください。');return;}
+ const html='<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+safe(d.job)+'｜'+safe(d.company)+'</title><style>body{font-family:system-ui,sans-serif;line-height:1.8;color:#172334;max-width:760px;margin:40px auto;padding:0 20px}h1{color:#13243a}h2{font-size:18px;border-bottom:1px solid #ddd;padding-bottom:6px;margin-top:28px}.salary{font-size:22px;font-weight:bold;color:#13243a}.tag{display:inline-block;background:#edf3f8;padding:4px 10px;border-radius:20px;margin-right:6px;font-size:13px}p{white-space:pre-wrap}</style></head><body><span class="tag">'+safe(d.industry)+'</span><span class="tag">'+safe(d.type)+'</span><h1>'+safe(d.job)+'</h1><p><strong>'+safe(d.company)+'</strong><br>'+safe(d.location)+'</p><p class="salary">'+safe(d.salary)+'</p>'+[['仕事内容',d.duties],['応募条件・必要な資格',d.requirements],['勤務時間',d.hours],['休日・休暇',d.holidays],['福利厚生・待遇',d.benefits],['職場の特徴',d.culture],['選考の流れ',d.steps],['よくある質問',d.faq]].filter(x=>x[1]).map(x=>'<h2>'+x[0]+'</h2><p>'+safe(x[1])+'</p>').join('')+'<hr><p>※募集条件の正確性・最新性を募集主が確認したうえで公開してください。</p></body></html>';
+ const blob=new Blob([html],{type:'text/html;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='recruitment-page.html';a.click();URL.revokeObjectURL(url);
+});
+render();
+</script>
+</body></html>

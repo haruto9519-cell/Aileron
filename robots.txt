@@ -3,4 +3,3 @@ Allow: /
 
 Sitemap: https://haruto9519-cell.github.io/Aileron/sitemap.xml
 Sitemap: https://haruto9519-cell.github.io/Aileron/kaimamo/sitemap.xml
-Sitemap: https://haruto9519-cell.github.io/Aileron/kaimamo/sitemap.txt

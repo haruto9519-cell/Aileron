@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#091326">
+<title>LOOP SHIFT — Aileron Game Studio</title>
+<style>
+:root{color-scheme:dark;--bg:#091326;--panel:#111f38;--line:#263a5d;--cyan:#56e4ff;--gold:#ffd36e;--muted:#9eb0ca}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -10%,#1b3960 0,transparent 55%),var(--bg);color:#f4f7ff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;display:flex;justify-content:center;padding:24px 14px}
+main{width:min(100%,650px)}header{text-align:center;margin:8px 0 22px}.brand{letter-spacing:.22em;color:var(--gold);font-size:11px;font-weight:800}.logo{font-size:clamp(30px,8vw,48px);font-weight:900;letter-spacing:.08em;margin:7px 0}.tag{color:var(--muted);font-size:14px}
+.panel{background:linear-gradient(160deg,#142643,#0e1a30);border:1px solid #2a4165;border-radius:22px;padding:18px;box-shadow:0 18px 55px #0005}
+.top{display:flex;justify-content:space-between;gap:10px;margin-bottom:15px}.stat{background:#091629;border:1px solid var(--line);border-radius:12px;padding:9px 13px;flex:1;text-align:center}.stat small{display:block;color:var(--muted);font-size:11px}.stat strong{font-size:20px}
+.board{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;max-width:470px;margin:auto;touch-action:manipulation}
+.tile{aspect-ratio:1;border:1px solid #2b4265;border-radius:12px;background:#0a172b;display:grid;place-items:center;position:relative;padding:0;cursor:pointer;overflow:hidden}
+.tile.active{background:linear-gradient(145deg,#172b49,#0c1a30);border-color:#3d5d88}.tile:focus-visible{outline:3px solid var(--gold);outline-offset:2px}.tile svg{width:88%;height:88%;overflow:visible}.pipe{stroke:#506785;stroke-width:11;stroke-linecap:round;fill:none}.tile.connected .pipe{stroke:var(--cyan);filter:drop-shadow(0 0 5px #56e4ff88)}.hub{fill:#506785}.tile.connected .hub{fill:var(--cyan)}.tile .endpoint{position:absolute;font-size:9px;font-weight:900;letter-spacing:.04em;color:var(--gold);top:5px}.tile.start .endpoint{left:5px}.tile.goal .endpoint{right:5px}
+.hint{text-align:center;color:var(--muted);font-size:12px;margin:14px 0 0}.actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px}button.action{border:0;border-radius:999px;padding:12px 20px;font-weight:800;cursor:pointer}.primary{background:var(--gold);color:#172033}.secondary{background:#1b3151;color:#eaf3ff;border:1px solid #38547c!important}
+#message{text-align:center;min-height:48px;padding:16px 4px 0;color:#dce9fb;font-weight:650}.foot{text-align:center;color:#7185a4;font-size:11px;margin:18px 0 0}
+@media(max-width:420px){body{padding:12px 9px}.panel{padding:12px}.board{gap:5px}.tile{border-radius:9px}.stat{padding:8px 5px}.stat strong{font-size:18px}}
+</style>
+</head>
+<body>
+<main>
+<header><div class="brand">AILERON GAME STUDIO</div><h1 class="logo">LOOP SHIFT</h1><div class="tag">回して、つないで、ゴールへ。</div></header>
+<section class="panel" aria-label="ゲーム">
+<div class="top"><div class="stat"><small>残り手数</small><strong id="moves">12</strong></div><div class="stat"><small>ステージ</small><strong>01</strong></div><div class="stat"><small>ベスト</small><strong id="best">—</strong></div></div>
+<div class="board" id="board" aria-label="パズル盤面"></div>
+<p class="hint">パネルをタップして回転。青く光る道をつないで右のゴールを目指そう。</p>
+<div id="message" role="status" aria-live="polite">スタートからゴールまで、光のルートを完成させよう。</div>
+<div class="actions"><button class="action primary" id="reset">やり直す</button><button class="action secondary" id="hint">ヒント</button></div>
+</section>
+<p class="foot">© 2026 Aileron Game Studio · Prototype 0.1</p>
+</main>
+<script>
+const N=5, START=10, GOAL=14, LIMIT=12;
+const route=[10,11,6,7,8,13,14];
+// Direction order: up, right, down, left
+const base={10:[1],11:[3,0],6:[2,1],7:[3,1],8:[3,2],13:[0,1],14:[3]};
+let tiles=[],moves=LIMIT,done=false;
+const board=document.getElementById('board'),movesEl=document.getElementById('moves'),message=document.getElementById('message');
+const rotate=d=>d.map(x=>(x+1)%4);
+function ports(t){let p=base[t.id]||[];for(let i=0;i<t.rot;i++)p=rotate(p);return p}
+function makeGame(){tiles=Array.from({length:25},(_,id)=>({id,rot:route.includes(id)?Math.floor(Math.random()*4):0}));moves=LIMIT;done=false;render();message.textContent='スタートからゴールまで、光のルートを完成させよう。';}
+function connected(){const seen=new Set([START]),q=[START];while(q.length){const id=q.shift(),r=Math.floor(id/N),c=id%N;for(const d of ports(tiles[id])){const nr=r+[-1,0,1,0][d],nc=c+[0,1,0,-1][d];if(nr<0||nr>=N||nc<0||nc>=N)continue;const ni=nr*N+nc;if(ports(tiles[ni]).includes((d+2)%4)&&!seen.has(ni)){seen.add(ni);q.push(ni)}}}return seen}
+function svgFor(t,lit){const dirs=ports(t),coords=[[50,0],[100,50],[50,100],[0,50]];let lines=dirs.map(d=>'<line class="pipe" x1="50" y1="50" x2="'+coords[d][0]+'" y2="'+coords[d][1]+'"/>').join('');return '<svg viewBox="0 0 100 100" aria-hidden="true">'+lines+'<circle class="hub" cx="50" cy="50" r="8"/></svg>'}
+function render(){const seen=connected();board.innerHTML='';tiles.forEach(t=>{const b=document.createElement('button');b.className='tile'+(route.includes(t.id)?' active':'')+(seen.has(t.id)?' connected':'')+(t.id===START?' start':'')+(t.id===GOAL?' goal':'');b.type='button';b.setAttribute('aria-label','パネル '+(t.id+1)+' を回転');if(t.id===START||t.id===GOAL){const e=document.createElement('span');e.className='endpoint';e.textContent=t.id===START?'START':'GOAL';b.append(e)}b.insertAdjacentHTML('beforeend',svgFor(t,seen.has(t.id)));if(route.includes(t.id))b.addEventListener('click',()=>turn(t.id));else b.disabled=true;board.append(b)});movesEl.textContent=moves;const best=localStorage.getItem('loopshift-best');document.getElementById('best').textContent=best?best+'手':'—';if(seen.has(GOAL)){done=true;message.textContent='CLEAR! '+(LIMIT-moves)+'手でルート完成！';if(!best||LIMIT-moves<Number(best))localStorage.setItem('loopshift-best',String(LIMIT-moves));document.getElementById('best').textContent=localStorage.getItem('loopshift-best')+'手';}}
+function turn(id){if(done||moves<=0)return;tiles[id].rot=(tiles[id].rot+1)%4;moves--;render();if(!done&&moves===0)message.textContent='手数終了。やり直して別のルートを探そう！'}
+document.getElementById('reset').addEventListener('click',makeGame);
+document.getElementById('hint').addEventListener('click',()=>{if(done)return;message.textContent='ヒント：STARTから右へ進み、上段を通ってから下へ折り返そう。'});
+makeGame();
+</script>
+</body></html>

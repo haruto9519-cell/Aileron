@@ -40,7 +40,7 @@ main{width:min(100%,660px)}header{text-align:center;margin:4px 0 18px}.brand{fon
 <div class="board-wrap"><div class="board" id="board" aria-label="5かける5のパズル盤面"></div></div>
 <p class="hint">パネルをタップして回転。青く光る道を START から GOAL までつなごう。<br>少ない手数でクリアすると、獲得スターが増える！</p>
 <div class="message" id="message" role="status" aria-live="polite">ルートをつないで、最初のステージをクリアしよう。</div>
-<div class="actions"><button class="action primary" id="reset">↻ リスタート</button><button class="action secondary" id="hint">✦ ヒント</button><button class="action quiet" id="sound" aria-pressed="false">♪ SOUND OFF</button></div>
+<div class="actions"><button class="action primary" id="reset">↻ リスタート</button><button class="action secondary" id="hint">✦ ヒント</button><button class="action quiet" id="sound" aria-pressed="false">♪ SOUND OFF</button><button class="action quiet" id="share">↗ 記録を共有</button></div>
 <div class="levels" id="levels" aria-label="ステージ選択"></div>
 </section>
 <p class="footer">© 2026 AILERON GAME STUDIO · LOOP SHIFT</p>
@@ -78,6 +78,7 @@ $('reset').addEventListener('click',()=>loadStage(stage));
 $('hint').addEventListener('click',()=>{if(finished)return;hintUsed=true;$('message').textContent='ヒント：青く光っていないパネルを1枚ずつ回し、隣同士の端を合わせよう。手数を節約して3スターを目指せ！';playTone(700)});
 $('sound').addEventListener('click',()=>{soundOn=!soundOn;$('sound').textContent=soundOn?'♪ SOUND ON':'♪ SOUND OFF';$('sound').setAttribute('aria-pressed',String(soundOn));playTone(700)});
 $('again').addEventListener('click',()=>loadStage(stage));
+$('share').addEventListener('click',async()=>{const text='LOOP SHIFT STAGE '+String(stage+1).padStart(2,'0')+' CLEAR! '+(progress.stars[stage]||1)+' STAR(S) — あなたも挑戦！';try{if(navigator.share){await navigator.share({title:'LOOP SHIFT',text,url:location.href})}else if(navigator.clipboard){await navigator.clipboard.writeText(text+' '+location.href);$('message').textContent='共有用テキストとURLをコピーしたよ！'}else{$('message').textContent=text+' '+location.href}}catch(e){if(e.name!=='AbortError')$('message').textContent='共有できなかった場合は、このページのURLをコピーしてね。'}});
 $('next').addEventListener('click',()=>loadStage(Math.min(stage+1,stages.length-1)));
 loadStage(0);
 </script>

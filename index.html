@@ -1846,5 +1846,15 @@ document.getElementById("contactForm").addEventListener("submit", async event =>
   }
 });
 </script>
+<script>
+(function(){
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("topic") !== "facility-page") return;
+  const category = document.getElementById("category");
+  const message = document.getElementById("message");
+  if (category && !category.value) category.value = "観光事業者様・掲載について";
+  if (message && !message.value) message.value = "施設案内ページメーカーを利用しました。ページの公開・設置・改善について相談したいです。";
+})();
+</script>
 </body>
 </html>

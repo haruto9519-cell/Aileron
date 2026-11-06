@@ -32,7 +32,7 @@ main{width:min(100%,650px)}header{text-align:center;margin:8px 0 22px}.brand{let
 <p class="foot">© 2026 Aileron Game Studio · Prototype 0.1</p>
 </main>
 <script>
-const N=5, START=10, GOAL=14, LIMIT=12;
+const N=5, START=10, GOAL=14, LIMIT=14;
 const route=[10,11,6,7,8,13,14];
 // Direction order: up, right, down, left
 const base={10:[1],11:[3,0],6:[2,1],7:[3,1],8:[3,2],13:[0,1],14:[3]};
@@ -40,7 +40,7 @@ let tiles=[],moves=LIMIT,done=false;
 const board=document.getElementById('board'),movesEl=document.getElementById('moves'),message=document.getElementById('message');
 const rotate=d=>d.map(x=>(x+1)%4);
 function ports(t){let p=base[t.id]||[];for(let i=0;i<t.rot;i++)p=rotate(p);return p}
-function makeGame(){tiles=Array.from({length:25},(_,id)=>({id,rot:route.includes(id)?Math.floor(Math.random()*4):0}));moves=LIMIT;done=false;render();message.textContent='スタートからゴールまで、光のルートを完成させよう。';}
+function makeGame(){tiles=Array.from({length:25},(_,id)=>({id,rot:route.includes(id)?1+Math.floor(Math.random()*2):0}));moves=LIMIT;done=false;render();message.textContent='スタートからゴールまで、光のルートを完成させよう。';}
 function connected(){const seen=new Set([START]),q=[START];while(q.length){const id=q.shift(),r=Math.floor(id/N),c=id%N;for(const d of ports(tiles[id])){const nr=r+[-1,0,1,0][d],nc=c+[0,1,0,-1][d];if(nr<0||nr>=N||nc<0||nc>=N)continue;const ni=nr*N+nc;if(ports(tiles[ni]).includes((d+2)%4)&&!seen.has(ni)){seen.add(ni);q.push(ni)}}}return seen}
 function svgFor(t,lit){const dirs=ports(t),coords=[[50,0],[100,50],[50,100],[0,50]];let lines=dirs.map(d=>'<line class="pipe" x1="50" y1="50" x2="'+coords[d][0]+'" y2="'+coords[d][1]+'"/>').join('');return '<svg viewBox="0 0 100 100" aria-hidden="true">'+lines+'<circle class="hub" cx="50" cy="50" r="8"/></svg>'}
 function render(){const seen=connected();board.innerHTML='';tiles.forEach(t=>{const b=document.createElement('button');b.className='tile'+(route.includes(t.id)?' active':'')+(seen.has(t.id)?' connected':'')+(t.id===START?' start':'')+(t.id===GOAL?' goal':'');b.type='button';b.setAttribute('aria-label','パネル '+(t.id+1)+' を回転');if(t.id===START||t.id===GOAL){const e=document.createElement('span');e.className='endpoint';e.textContent=t.id===START?'START':'GOAL';b.append(e)}b.insertAdjacentHTML('beforeend',svgFor(t,seen.has(t.id)));if(route.includes(t.id))b.addEventListener('click',()=>turn(t.id));else b.disabled=true;board.append(b)});movesEl.textContent=moves;const best=localStorage.getItem('loopshift-best');document.getElementById('best').textContent=best?best+'手':'—';if(seen.has(GOAL)){done=true;message.textContent='CLEAR! '+(LIMIT-moves)+'手でルート完成！';if(!best||LIMIT-moves<Number(best))localStorage.setItem('loopshift-best',String(LIMIT-moves));document.getElementById('best').textContent=localStorage.getItem('loopshift-best')+'手';}}

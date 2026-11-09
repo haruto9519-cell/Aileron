@@ -132,4 +132,25 @@
     <priority>0.8</priority>
   </url>
 
+  <url>
+    <loc>https://haruto9519-cell.github.io/Aileron/work-sample.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://haruto9519-cell.github.io/Aileron/operator.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://haruto9519-cell.github.io/Aileron/service-scope.html</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
 </urlset>

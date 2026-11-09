@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://aileron-official.pages.dev/sitemap.xml
+# Sitemap configuration updated 2026-11-09

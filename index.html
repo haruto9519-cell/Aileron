@@ -42,9 +42,7 @@
   "email": "haruto.9519@gmail.com"
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 
 <style>
 :root {
@@ -71,7 +69,7 @@ html {
 }
 
 body {
-  font-family: "DM Sans", "Noto Sans JP", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Noto Sans JP", "Yu Gothic", Meiryo, sans-serif;
   color: var(--text);
   background: white;
   line-height: 1.85;
@@ -98,7 +96,7 @@ img {
 }
 
 .en {
-  font-family: "DM Sans", sans-serif;
+  font-family: inherit;
   letter-spacing: 3px;
 }
 
@@ -1081,6 +1079,76 @@ img {
     transform: none;
   }
 }
+
+/* RESPONSIVE REFINEMENTS */
+html, body { max-width:100%; overflow-x:hidden; }
+body { overflow-wrap:anywhere; }
+.container { width:min(1160px, calc(100% - 40px)); }
+img, video, iframe { max-width:100%; }
+button, a { -webkit-tap-highlight-color:transparent; }
+#trust .feature-card { min-height:0; }
+#trust .feature-card h3 { margin-top:18px; }
+.hero-service-card { min-width:0; }
+.company-table { table-layout:fixed; }
+.company-table th { width:132px; }
+.contact-form, .contact-form * { min-width:0; }
+@media (max-width:800px) {
+  .container { width:calc(100% - 36px); }
+  .header { height:68px; }
+  .logo-image img { width:132px; height:44px; }
+  .nav-menu { top:68px; max-height:calc(100vh - 68px); overflow-y:auto; padding:22px 20px 28px; box-shadow:0 12px 22px rgba(16,29,48,.12); }
+  .nav-menu a { display:block; padding:8px 6px; font-size:13px; }
+  .menu-button { min-width:44px; min-height:44px; }
+  .hero-content { padding-top:105px; padding-bottom:92px; }
+  .hero h1 { font-size:clamp(34px,8vw,54px); letter-spacing:0; }
+  .hero-kicker { letter-spacing:2px; line-height:1.7; }
+  .hero-sub br { display:none; }
+  .hero-buttons { gap:10px; }
+  .hero-buttons .button { width:100%; justify-content:space-between; min-height:48px; }
+  .hero-bottom { left:18px; right:18px; bottom:18px; gap:8px; flex-wrap:wrap; letter-spacing:1px; }
+  .intro, .features, .service, .flow, .voice, .company, .contact { padding-top:72px; padding-bottom:72px; }
+  .section-title { font-size:clamp(25px,6vw,34px); line-height:1.45; }
+  .section-desc, .intro-text { font-size:14px; line-height:2; }
+  .feature-grid { grid-template-columns:1fr; gap:16px; margin-top:32px; }
+  .feature-card { min-height:0; }
+  .feature-card-content { padding:22px; }
+  .feature-card h3 { margin-top:18px; font-size:18px; }
+  .life-shift-visual { height:210px; }
+  .service-heading { margin-bottom:38px; }
+  .service-row { gap:22px; margin-bottom:54px; }
+  .service-image { height:auto; aspect-ratio:16 / 10; }
+  .service-text h3 { font-size:22px; }
+  .flow-list { grid-template-columns:1fr 1fr; gap:24px 16px; }
+  .flow-item { min-width:0; }
+  .price { padding:68px 0; }
+  .price-box { padding:30px 20px; }
+  .price-number { font-size:clamp(36px,10vw,52px); }
+  .voice-grid { grid-template-columns:1fr; }
+  .voice-card { padding:24px; }
+  .company-layout { gap:24px; }
+  .company-table th, .company-table td { padding:12px 8px; font-size:12px; overflow-wrap:anywhere; }
+  .company-table th { width:104px; }
+  .footer-top { gap:24px; }
+  .footer-links { gap:12px 18px; line-height:1.8; }
+  .form-check { align-items:flex-start; line-height:1.7; }
+  .form-check input { flex:0 0 auto; width:18px; height:18px; }
+  .submit-button { width:100%; min-height:50px; }
+}
+@media (max-width:420px) {
+  .container { width:calc(100% - 30px); }
+  .hero-content { gap:26px; padding-top:96px; padding-bottom:92px; }
+  .hero-visual { grid-template-columns:1fr; }
+  .hero-service-card { min-height:132px; }
+  .hero-bottom { font-size:8px; }
+  .flow-list { grid-template-columns:1fr; }
+  .company-table th { width:88px; }
+  .price-box { padding:25px 15px; }
+  .footer-links { display:grid; grid-template-columns:1fr 1fr; }
+}
+@media (hover:none) {
+  .feature-card:hover, .hero-service-card:hover { transform:none; }
+}
+
 </style>
 </head>
 
@@ -1116,14 +1184,14 @@ img {
 <section class="hero" id="home">
   <div class="container hero-content">
     <div class="hero-copy">
-      <div class="hero-kicker en">WEB SERVICES FOR LIFE & EVERYDAY CHOICES</div>
+      <div class="hero-kicker en">AILERON / WEB SERVICES & LOCAL SUPPORT</div>
       <h1>
-        旅も、暮らしも、<br>
-        <span>日々の選択</span>も。
+        旅の計画も、暮らしの準備も。<br>
+        <span>使う人の目線で、形にする。</span>
       </h1>
       <p class="hero-sub">
-        旅先を選ぶとき。新しい生活を始めるとき。ネットで買い物をするとき。<br>
-        Aileronは、日々の選択を支えるWebサービスを企画・運営しています。
+        旅行先を探すとき。新しい生活の準備をするとき。ネットで買い物をするとき。<br>
+        Aileronは、そんな日々の場面で使えるWebサービスを企画・運営しています。
       </p>
       <div class="hero-buttons">
         <a href="https://tabi-hikaku.pages.dev/" class="button button-primary" target="_blank" rel="noopener noreferrer">OPEN TABI-HIKAKU <span>→</span></a>
@@ -1160,27 +1228,22 @@ img {
 <section class="intro" id="about">
   <div class="container intro-layout">
     <div class="reveal">
-      <div class="section-label en">01 / ABOUT AILERON</div>
+      <div class="section-label">Aileronについて</div>
 
       <h2 class="section-title">
-        旅と暮らしの、<br>
-        次の一歩を支える。
+        毎日の「どうしよう」を、<br>少し分かりやすく。
       </h2>
 
       <p class="intro-text">
-        Aileronは、旅行や暮らしの場面で生まれる「何を選び、何から始めればよいか分からない」という悩みを、Webサービスで整理することを目指しています。<br><br>
-
-        「旅比べ」では、出発地・目的地・旅行予算をもとに、交通手段やホテル、食事、観光スポットをまとめて検討できます。<br><br>
-
-        「LIFE SHIFT」では、進学・就職・転職・引越しなど、暮らしの変化に伴う準備や手続き、期限や進捗を整理できます。<br><br>
-
-        新たに「買いまも」では、ネット通販の購入前確認から購入後の記録・期限管理までを支えるサービスを企画しています。<br><br>
-
-        旅行者と地域をつなぐ取り組み、人生の転機、日々の買い物。Aileronは、暮らしのさまざまな場面で役立つ仕組みを企画・運営します。
+        Aileronは、旅行や新生活、ネット通販など、日々の選択を支えるWebサービスを個人で企画・運営しています。<br><br>
+        「旅比べ」は、出発地や予算から旅行先・移動・宿泊を考えるためのサービスです。<br><br>
+        「LIFE SHIFT」は、進学や就職、引越しなどに必要な準備や期限を整理するサービスです。<br><br>
+        「買いまも」は、ネット通販の購入前確認や購入後の記録をまとめるサービスとして開発準備を進めています。<br><br>
+        ほかに、ホテル・旅館など地域の事業者に向けて、Webサイトの情報整理や集客の改善案づくりにも取り組んでいます。
       </p>
 
       <div class="intro-small en">
-        CONNECTING PEOPLE AND PLACES.
+        小さな改善を、ひとつずつ。
       </div>
     </div>
 
@@ -1198,10 +1261,10 @@ img {
 <section class="features" id="features">
   <div class="container">
     <div class="features-heading reveal">
-      <div class="section-label en">02 / OUR STRENGTHS</div>
-      <h2 class="section-title">Aileronのサービス領域</h2>
+      <div class="section-label">サービスの特徴</div>
+      <h2 class="section-title">取り組んでいること</h2>
       <p class="section-desc">
-        旅・暮らし・買い物。毎日のさまざまな場面で生まれる課題に向き合うサービスを展開しています。
+        旅行、新生活、買い物。使う人が迷いやすい場面を、Webの仕組みで少し分かりやすくします。
       </p>
     </div>
 
@@ -1371,10 +1434,10 @@ img {
   <div class="container">
 
     <div class="service-heading reveal">
-      <div class="section-label en">03 / OUR SERVICE</div>
-      <h2 class="section-title">サービス・事業内容</h2>
+      <div class="section-label">サービス紹介</div>
+      <h2 class="section-title">サービスと取り組み</h2>
       <p class="section-desc">
-        それぞれ異なる課題に向き合うWebサービスを通じて、日々の選択と行動を支えます。
+        現在運営しているサービスと、地域の事業者向けに行っている支援をご紹介します。
       </p>
     </div>
 
@@ -1499,10 +1562,10 @@ img {
 <section class="flow" id="flow">
   <div class="container">
     <div class="reveal">
-      <div class="section-label en">05 / BUSINESS FLOW</div>
-      <h2 class="section-title">ご相談からサポートまで</h2>
+      <div class="section-label">ご利用の流れ</div>
+      <h2 class="section-title">ご相談から対応まで</h2>
       <p class="section-desc">
-        事業者様の状況や目的を確認しながら、必要な取り組みを一緒に考えます。
+        まずはお話を伺い、対応できる内容と費用を確認してから進めます。
       </p>
     </div>
 
@@ -1537,7 +1600,7 @@ img {
 <!-- PRICE -->
 <section class="price" id="price">
   <div class="container reveal">
-    <div class="section-label en">06 / PRICING</div>
+    <div class="section-label">料金の目安</div>
     <h2 class="section-title">サービス料金</h2>
     <p class="section-desc">
       以下は掲載中の参考価格です。具体的な範囲・条件はお問い合わせ内容を確認してご案内します。
@@ -1573,10 +1636,10 @@ img {
 <section class="voice">
   <div class="container">
     <div class="reveal">
-      <div class="section-label en">07 / USE CASE</div>
-      <h2 class="section-title">支援内容のイメージ</h2>
+      <div class="section-label">ご相談内容の例</div>
+      <h2 class="section-title">ご相談内容の例</h2>
       <p class="section-desc">
-        Aileronのサービス活用を想定したモデルケースです。
+        実際の導入事例ではなく、対応内容をイメージしていただくための例です。
       </p>
     </div>
 
@@ -1604,8 +1667,8 @@ img {
 <section class="company" id="company">
   <div class="container company-layout">
     <div class="reveal">
-      <div class="section-label en">08 / COMPANY</div>
-      <h2 class="section-title">運営情報</h2>
+      <div class="section-label">運営情報</div>
+      <h2 class="section-title">運営について</h2>
       <p class="section-desc">
         Aileronについて
       </p>
@@ -1653,7 +1716,7 @@ img {
 <section class="contact" id="contact">
   <div class="container">
     <div class="contact-heading reveal">
-      <div class="section-label en">09 / CONTACT</div>
+      <div class="section-label">お問い合わせ</div>
       <h2 class="section-title">お問い合わせ</h2>
       <p class="section-desc">
         サービスに関するご質問、観光事業者様からのご相談、<br>

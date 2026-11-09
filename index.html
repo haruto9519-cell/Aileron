@@ -1292,6 +1292,91 @@ button, a { -webkit-tap-highlight-color:transparent; }
   .travel-topic-card p { margin-bottom:18px; }
 }
 
+
+/* Image-led travel cards: concise copy, visual-first layout */
+.travel-topic-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:22px;
+  margin:38px auto 0;
+}
+.travel-topic-card {
+  min-width:0;
+  overflow:hidden;
+  background:#fff;
+  border:1px solid #e5e9ed;
+  border-radius:8px;
+  box-shadow:0 5px 20px rgba(25,43,60,.055);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+.travel-topic-card:hover {
+  transform:translateY(-3px);
+  box-shadow:0 12px 28px rgba(25,43,60,.11);
+}
+.travel-topic-image {
+  display:block;
+  width:100%;
+  aspect-ratio:16 / 9;
+  overflow:hidden;
+  background:#e9eef2;
+}
+.travel-topic-image img {
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform .35s ease;
+}
+.travel-topic-card:hover .travel-topic-image img { transform:scale(1.035); }
+.travel-topic-body { padding:20px 21px 22px; }
+.travel-topic-category {
+  display:block;
+  margin:0 0 10px;
+  color:#788998;
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:1.5px;
+}
+.travel-topic-body h3 {
+  margin:0 0 7px;
+  color:#1c2d3e;
+  font-size:17px;
+  line-height:1.55;
+  font-weight:700;
+}
+.travel-topic-body p {
+  margin:0 0 17px;
+  color:#687581;
+  font-size:13px;
+  line-height:1.7;
+}
+.travel-topic-link {
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  color:#315f86;
+  font-size:12px;
+  font-weight:700;
+  text-decoration:none;
+  border-bottom:1px solid #c5d2dc;
+  padding-bottom:3px;
+}
+.travel-topic-link.secondary {
+  display:flex;
+  width:fit-content;
+  margin-top:10px;
+  color:#687988;
+  font-weight:600;
+}
+@media(max-width:980px) {
+  .travel-topic-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
+}
+@media(max-width:600px) {
+  .travel-topic-grid { grid-template-columns:1fr; gap:16px; margin-top:26px; }
+  .travel-topic-body { padding:17px 18px 19px; }
+  .travel-topic-body h3 { font-size:16px; }
+}
+
 </style>
 </head>
 
@@ -1481,41 +1566,71 @@ button, a { -webkit-tap-highlight-color:transparent; }
     </div>
     <div class="travel-topic-grid">
       <article class="travel-topic-card reveal">
-        <div class="travel-topic-meta">01 <span>予算</span></div>
-        <h3>旅行にいくら使える？</h3>
-        <p>交通費、宿泊費、食事代、観光費。旅行全体の予算を決めるときの考え方と、費用の見積もり方を紹介します。</p>
-        <a href="./travel-budget-guide.html">旅行予算の立て方を見る <span aria-hidden="true">→</span></a>
+        <a class="travel-topic-image" href="./travel-budget-guide.html" aria-label="旅行予算の立て方を見る">
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80" alt="海と山が広がる旅行先" loading="lazy">
+        </a>
+        <div class="travel-topic-body">
+          <span class="travel-topic-category">TRAVEL BUDGET</span>
+          <h3>旅の予算を考える</h3>
+          <p>交通費・宿泊費・食費の目安をチェック。</p>
+          <a class="travel-topic-link" href="./travel-budget-guide.html">詳しく見る <span aria-hidden="true">→</span></a>
+        </div>
       </article>
       <article class="travel-topic-card reveal">
-        <div class="travel-topic-meta">02 <span>移動</span></div>
-        <h3>どの移動手段が合っている？</h3>
-        <p>新幹線、飛行機、高速バス、車。それぞれの料金や所要時間、乗り換えを比べて選ぶためのポイントです。</p>
-        <a href="./transport-cost-comparison.html">移動手段の比較を見る <span aria-hidden="true">→</span></a>
+        <a class="travel-topic-image" href="./transport-cost-comparison.html" aria-label="移動手段の比較を見る">
+          <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=900&q=80" alt="湖畔へ続く旅行風景" loading="lazy">
+        </a>
+        <div class="travel-topic-body">
+          <span class="travel-topic-category">TRANSPORT</span>
+          <h3>移動手段を比べる</h3>
+          <p>新幹線・飛行機・バス・車を比較。</p>
+          <a class="travel-topic-link" href="./transport-cost-comparison.html">詳しく見る <span aria-hidden="true">→</span></a>
+        </div>
       </article>
       <article class="travel-topic-card reveal">
-        <div class="travel-topic-meta">03 <span>宿泊</span></div>
-        <h3>宿泊先を選ぶときのポイント</h3>
-        <p>宿泊料金だけでなく、食事、部屋、設備、アクセス、チェックイン条件も確認。宿を比べるときに役立つ情報です。</p>
-        <a href="./hotel-cost-comparison.html">ホテル料金の比較を見る <span aria-hidden="true">→</span></a>
+        <a class="travel-topic-image" href="./hotel-cost-comparison.html" aria-label="宿泊先の比較を見る">
+          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=80" alt="ホテルの屋外プールと建物" loading="lazy">
+        </a>
+        <div class="travel-topic-body">
+          <span class="travel-topic-category">HOTEL</span>
+          <h3>宿泊先を選ぶ</h3>
+          <p>料金や部屋、食事、立地を確認。</p>
+          <a class="travel-topic-link" href="./hotel-cost-comparison.html">詳しく見る <span aria-hidden="true">→</span></a>
+        </div>
       </article>
       <article class="travel-topic-card reveal">
-        <div class="travel-topic-meta">04 <span>旅程</span></div>
-        <h3>無理のない旅行日程を組む</h3>
-        <p>行きたい場所を決めたら、移動や食事にかかる時間も考えて予定を整理。日帰りや1泊2日の旅程づくりを紹介します。</p>
-        <a href="./travel-plan-making-guide.html">旅行プランの作り方を見る <span aria-hidden="true">→</span></a>
+        <a class="travel-topic-image" href="./travel-plan-making-guide.html" aria-label="旅行プランの作り方を見る">
+          <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=80" alt="山並みが続く景色" loading="lazy">
+        </a>
+        <div class="travel-topic-body">
+          <span class="travel-topic-category">ITINERARY</span>
+          <h3>旅の日程を組み立てる</h3>
+          <p>日帰り・1泊2日の予定づくり。</p>
+          <a class="travel-topic-link" href="./travel-plan-making-guide.html">詳しく見る <span aria-hidden="true">→</span></a>
+        </div>
       </article>
       <article class="travel-topic-card reveal">
-        <div class="travel-topic-meta">05 <span>行き先</span></div>
-        <h3>次の休みはどこへ行こう？</h3>
-        <p>季節、日数、出発地、興味のあることから行き先を探す方法と、国内旅行の候補を考えるヒントをまとめました。</p>
-        <a href="./travel-destination-guide.html">行き先の決め方を見る <span aria-hidden="true">→</span></a>
-        <a class="travel-topic-secondary" href="https://tabi-hikaku.pages.dev/" target="_blank" rel="noopener noreferrer">旅比べで行き先を探す ↗</a>
+        <a class="travel-topic-image" href="./travel-destination-guide.html" aria-label="旅行先の探し方を見る">
+          <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80" alt="山と湖の美しい旅行先" loading="lazy">
+        </a>
+        <div class="travel-topic-body">
+          <span class="travel-topic-category">DESTINATION</span>
+          <h3>次の行き先を探す</h3>
+          <p>季節や日数に合う旅先のヒント。</p>
+          <a class="travel-topic-link" href="./travel-destination-guide.html">詳しく見る <span aria-hidden="true">→</span></a>
+          <a class="travel-topic-link secondary" href="https://tabi-hikaku.pages.dev/" target="_blank" rel="noopener noreferrer">旅比べを使う ↗</a>
+        </div>
       </article>
       <article class="travel-topic-card reveal">
-        <div class="travel-topic-meta">06 <span>施設・地域</span></div>
-        <h3>旅館や観光施設の情報発信</h3>
-        <p>宿泊プランや施設の特徴を、訪れる人に分かりやすく届けるために。AileronのWeb情報改善・集客支援を紹介します。</p>
-        <a href="./tourism-marketing-support.html">宿泊施設向け支援を見る <span aria-hidden="true">→</span></a>
+        <a class="travel-topic-image" href="./tourism-marketing-support.html" aria-label="宿泊施設向け支援を見る">
+          <img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=900&q=80" alt="観光地の街並み" loading="lazy">
+        </a>
+        <div class="travel-topic-body">
+          <span class="travel-topic-category">LOCAL TOURISM</span>
+          <h3>地域の魅力を伝える</h3>
+          <p>宿や観光施設の情報発信について。</p>
+          <a class="travel-topic-link" href="./tourism-marketing-support.html">詳しく見る <span aria-hidden="true">→</span></a>
+        </div>
       </article>
     </div>
     <p class="travel-topics-note">

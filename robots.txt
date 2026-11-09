@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://haruto9519-cell.github.io/Aileron/sitemap.xml
-Sitemap: https://haruto9519-cell.github.io/Aileron/kaimamo/sitemap.xml
+Sitemap: https://aileron-official.pages.dev/sitemap.xml
+Sitemap: https://aileron-official.pages.dev/kaimamo/sitemap.xml

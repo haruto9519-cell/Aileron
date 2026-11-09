@@ -1202,6 +1202,96 @@ button, a { -webkit-tap-highlight-color:transparent; }
   .travel-topic p { font-size:13px; }
 }
 
+
+/* Refined travel guide cards */
+.travel-topic-grid {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+  margin:42px auto 0;
+}
+.travel-topic-card {
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  min-height:258px;
+  padding:25px 24px 22px;
+  background:#fff;
+  border:1px solid #e1e6eb;
+  border-radius:5px;
+  box-shadow:0 3px 12px rgba(20,38,58,.035);
+  transition:border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.travel-topic-card:hover {
+  border-color:#b9c8d5;
+  box-shadow:0 9px 22px rgba(20,38,58,.075);
+  transform:translateY(-2px);
+}
+.travel-topic-meta {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:22px;
+  color:#8a969f;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:1.5px;
+}
+.travel-topic-meta span {
+  padding-left:12px;
+  border-left:1px solid #d7dee5;
+  color:#52687c;
+  font-size:11px;
+  letter-spacing:.08em;
+}
+.travel-topic-card h3 {
+  margin:0 0 12px;
+  color:#1b2c3e;
+  font-size:17px;
+  font-weight:700;
+  line-height:1.6;
+  letter-spacing:0;
+}
+.travel-topic-card p {
+  margin:0 0 22px;
+  color:#5d6975;
+  font-size:13px;
+  line-height:1.95;
+}
+.travel-topic-card a {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  width:fit-content;
+  max-width:100%;
+  margin-top:auto;
+  color:#315f86;
+  font-size:12px;
+  font-weight:700;
+  line-height:1.8;
+  text-decoration:none;
+  border-bottom:1px solid #b9c9d7;
+  padding-bottom:3px;
+}
+.travel-topic-card a span { font-size:15px; }
+.travel-topic-card a.travel-topic-secondary {
+  margin:12px 0 0;
+  color:#697988;
+  border-bottom-color:#d8dfe5;
+  font-weight:600;
+}
+@media(max-width:1000px) {
+  .travel-topic-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+  .travel-topic-card { min-height:245px; }
+}
+@media(max-width:620px) {
+  .travel-topic-grid { grid-template-columns:1fr; gap:12px; margin-top:28px; }
+  .travel-topic-card { min-height:0; padding:21px 20px 20px; }
+  .travel-topic-meta { margin-bottom:14px; }
+  .travel-topic-card h3 { font-size:16px; }
+  .travel-topic-card p { margin-bottom:18px; }
+}
+
 </style>
 </head>
 
@@ -1389,37 +1479,43 @@ button, a { -webkit-tap-highlight-color:transparent; }
         行き先を決めるところから、交通手段や宿を選ぶところまで。旅行の準備で迷ったときに読めるガイドをまとめました。
       </p>
     </div>
-    <div class="travel-topic-list">
-      <article class="travel-topic reveal">
-        <h3>旅行にいくら使える？予算の考え方</h3>
-        <p>まずは旅行全体で使える金額を決めて、交通費・宿泊費・食事代・観光費に分けてみましょう。予算の立て方と見積もりのポイントを紹介します。</p>
-        <a href="./travel-budget-guide.html">旅行予算の立て方を読む →</a>
+    <div class="travel-topic-grid">
+      <article class="travel-topic-card reveal">
+        <div class="travel-topic-meta">01 <span>予算</span></div>
+        <h3>旅行にいくら使える？</h3>
+        <p>交通費、宿泊費、食事代、観光費。旅行全体の予算を決めるときの考え方と、費用の見積もり方を紹介します。</p>
+        <a href="./travel-budget-guide.html">旅行予算の立て方を見る <span aria-hidden="true">→</span></a>
       </article>
-      <article class="travel-topic reveal">
-        <h3>新幹線・飛行機・バス・車、どれで行く？</h3>
-        <p>移動にかかるお金だけでなく、所要時間や乗り換え、現地での移動も含めて比べると、自分に合う方法を選びやすくなります。</p>
-        <a href="./transport-cost-comparison.html">移動手段の比較ガイドを読む →</a>
+      <article class="travel-topic-card reveal">
+        <div class="travel-topic-meta">02 <span>移動</span></div>
+        <h3>どの移動手段が合っている？</h3>
+        <p>新幹線、飛行機、高速バス、車。それぞれの料金や所要時間、乗り換えを比べて選ぶためのポイントです。</p>
+        <a href="./transport-cost-comparison.html">移動手段の比較を見る <span aria-hidden="true">→</span></a>
       </article>
-      <article class="travel-topic reveal">
-        <h3>宿泊先を選ぶときに見ておきたいこと</h3>
-        <p>料金や場所はもちろん、食事の有無、部屋の広さ、設備、チェックインの時間も確認。ホテル代を比べるときのポイントをまとめています。</p>
-        <a href="./hotel-cost-comparison.html">ホテル料金の比較ガイドを読む →</a>
+      <article class="travel-topic-card reveal">
+        <div class="travel-topic-meta">03 <span>宿泊</span></div>
+        <h3>宿泊先を選ぶときのポイント</h3>
+        <p>宿泊料金だけでなく、食事、部屋、設備、アクセス、チェックイン条件も確認。宿を比べるときに役立つ情報です。</p>
+        <a href="./hotel-cost-comparison.html">ホテル料金の比較を見る <span aria-hidden="true">→</span></a>
       </article>
-      <article class="travel-topic reveal">
-        <h3>日帰り・1泊2日の予定を組んでみる</h3>
-        <p>行きたい場所を詰め込みすぎず、移動や食事にかかる時間も考えて予定を立てるのがコツ。旅程づくりの基本を紹介します。</p>
-        <a href="./travel-plan-making-guide.html">旅行プランの作り方を読む →</a>
+      <article class="travel-topic-card reveal">
+        <div class="travel-topic-meta">04 <span>旅程</span></div>
+        <h3>無理のない旅行日程を組む</h3>
+        <p>行きたい場所を決めたら、移動や食事にかかる時間も考えて予定を整理。日帰りや1泊2日の旅程づくりを紹介します。</p>
+        <a href="./travel-plan-making-guide.html">旅行プランの作り方を見る <span aria-hidden="true">→</span></a>
       </article>
-      <article class="travel-topic reveal">
-        <h3>次の休みはどこへ行こう？行き先の探し方</h3>
-        <p>季節や日数、出発する場所、興味のあることから候補を探してみましょう。国内旅行の行き先を決めるヒントをまとめました。</p>
-        <a href="./travel-destination-guide.html">行き先の決め方を読む →</a>
-        <a href="https://tabi-hikaku.pages.dev/" target="_blank" rel="noopener noreferrer">旅比べで行き先を探す →</a>
+      <article class="travel-topic-card reveal">
+        <div class="travel-topic-meta">05 <span>行き先</span></div>
+        <h3>次の休みはどこへ行こう？</h3>
+        <p>季節、日数、出発地、興味のあることから行き先を探す方法と、国内旅行の候補を考えるヒントをまとめました。</p>
+        <a href="./travel-destination-guide.html">行き先の決め方を見る <span aria-hidden="true">→</span></a>
+        <a class="travel-topic-secondary" href="https://tabi-hikaku.pages.dev/" target="_blank" rel="noopener noreferrer">旅比べで行き先を探す ↗</a>
       </article>
-      <article class="travel-topic reveal">
-        <h3>旅館や観光施設の情報発信について</h3>
-        <p>宿泊プランや施設の特徴が、訪れる人にきちんと伝わるサイトになっているか。AileronのWeb情報改善・集客支援について紹介します。</p>
-        <a href="./tourism-marketing-support.html">宿泊施設向けの支援内容を見る →</a>
+      <article class="travel-topic-card reveal">
+        <div class="travel-topic-meta">06 <span>施設・地域</span></div>
+        <h3>旅館や観光施設の情報発信</h3>
+        <p>宿泊プランや施設の特徴を、訪れる人に分かりやすく届けるために。AileronのWeb情報改善・集客支援を紹介します。</p>
+        <a href="./tourism-marketing-support.html">宿泊施設向け支援を見る <span aria-hidden="true">→</span></a>
       </article>
     </div>
     <p class="travel-topics-note">

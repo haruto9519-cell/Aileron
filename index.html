@@ -1149,6 +1149,59 @@ button, a { -webkit-tap-highlight-color:transparent; }
   .feature-card:hover, .hero-service-card:hover { transform:none; }
 }
 
+
+/* Travel guide links: editorial list instead of repetitive feature cards */
+.travel-topic-list {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:0 44px;
+  max-width:1000px;
+  margin:42px auto 0;
+  border-top:1px solid #dce2e8;
+}
+.travel-topic {
+  min-width:0;
+  padding:25px 0 27px;
+  border-bottom:1px solid #dce2e8;
+}
+.travel-topic h3 {
+  margin:0 0 10px;
+  color:#182b40;
+  font-size:17px;
+  font-weight:700;
+  line-height:1.65;
+  letter-spacing:0;
+}
+.travel-topic p {
+  margin:0 0 14px;
+  color:#586675;
+  font-size:13px;
+  line-height:1.95;
+}
+.travel-topic a {
+  display:inline-block;
+  margin:4px 16px 0 0;
+  color:#315f86;
+  font-size:13px;
+  font-weight:700;
+  line-height:1.8;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+.travel-topics-note {
+  max-width:900px;
+  margin:28px auto 0;
+  color:#687685;
+  font-size:12px;
+  line-height:1.9;
+}
+@media(max-width:800px) {
+  .travel-topic-list { grid-template-columns:1fr; gap:0; margin-top:28px; }
+  .travel-topic { padding:21px 0 23px; }
+  .travel-topic h3 { font-size:16px; }
+  .travel-topic p { font-size:13px; }
+}
+
 </style>
 </head>
 
@@ -1327,60 +1380,50 @@ button, a { -webkit-tap-highlight-color:transparent; }
 
 
 <!-- TRAVEL SEARCH TOPICS -->
-<section class="features" id="travel-topics">
+<section class="features travel-topics" id="travel-topics">
   <div class="container">
     <div class="features-heading reveal">
-      <div class="section-label en">TRAVEL PLANNING GUIDE</div>
-      <h2 class="section-title">旅行の比較・計画で確認したいこと</h2>
+      <div class="section-label">旅行の計画に役立つ読みもの</div>
+      <h2 class="section-title">旅行先や予算を決める前に</h2>
       <p class="section-desc">
-        旅行先選びから予算づくり、移動・宿泊の検討まで。旅行を計画するときに気になる情報をテーマ別にまとめています。
+        行き先を決めるところから、交通手段や宿を選ぶところまで。旅行の準備で迷ったときに読めるガイドをまとめました。
       </p>
     </div>
-    <div class="feature-grid">
-      <article class="feature-card reveal">
-        <div class="feature-number en">01 / TRAVEL BUDGET</div>
-        <h3>旅行費用・旅行予算の立て方</h3>
-        <p>旅行全体の予算を決めるときは、交通費・宿泊費・食費・観光費・現地での移動費などを分けて考えることが大切です。予算配分や費用の見積もり方を確認できます。</p>
-        <a href="./travel-budget-guide.html" style="display:inline-block;margin-top:18px;color:#315f86;font-size:13px;font-weight:700;text-decoration:underline;">旅行予算の立て方を読む →</a>
+    <div class="travel-topic-list">
+      <article class="travel-topic reveal">
+        <h3>旅行にいくら使える？予算の考え方</h3>
+        <p>まずは旅行全体で使える金額を決めて、交通費・宿泊費・食事代・観光費に分けてみましょう。予算の立て方と見積もりのポイントを紹介します。</p>
+        <a href="./travel-budget-guide.html">旅行予算の立て方を読む →</a>
       </article>
-      <article class="feature-card reveal">
-        <div class="feature-number en">02 / TRANSPORT & COST</div>
-        <h3>交通費・移動手段の比較</h3>
-        <p>新幹線・電車・飛行機・高速バス・車など、移動手段を選ぶときは料金だけでなく、所要時間、乗り換え、出発地と目的地も確認しましょう。</p>
-        <a href="./travel-cost-comparison.html" style="display:inline-block;margin-top:18px;color:#315f86;font-size:13px;font-weight:700;text-decoration:underline;">旅行費用の比較方法を読む →</a>
-        <a href="./transport-cost-comparison.html" style="display:inline-block;margin:10px 0 0;color:#315f86;font-size:13px;font-weight:700;text-decoration:underline;">新幹線・飛行機・高速バス・車の比較ガイド →</a>
+      <article class="travel-topic reveal">
+        <h3>新幹線・飛行機・バス・車、どれで行く？</h3>
+        <p>移動にかかるお金だけでなく、所要時間や乗り換え、現地での移動も含めて比べると、自分に合う方法を選びやすくなります。</p>
+        <a href="./transport-cost-comparison.html">移動手段の比較ガイドを読む →</a>
       </article>
-      <article class="feature-card reveal">
-        <div class="feature-number en">03 / HOTEL & STAY</div>
-        <h3>ホテル・宿泊先の選び方</h3>
-        <p>ホテルや旅館などの宿泊先は、宿泊料金、場所、交通アクセス、人数、設備、チェックイン条件などを確認して旅行の予算に合わせて検討します。</p>
-        <a href="./travel-planning-guide.html" style="display:inline-block;margin-top:18px;color:#315f86;font-size:13px;font-weight:700;text-decoration:underline;">旅行計画の基本を読む →</a>
-        <a href="./hotel-cost-comparison.html" style="display:inline-block;margin:10px 0 0;color:#315f86;font-size:13px;font-weight:700;text-decoration:underline;">ホテル料金・宿泊費の比較ガイド →</a>
+      <article class="travel-topic reveal">
+        <h3>宿泊先を選ぶときに見ておきたいこと</h3>
+        <p>料金や場所はもちろん、食事の有無、部屋の広さ、設備、チェックインの時間も確認。ホテル代を比べるときのポイントをまとめています。</p>
+        <a href="./hotel-cost-comparison.html">ホテル料金の比較ガイドを読む →</a>
       </article>
-      <article class="feature-card reveal">
-        <div class="feature-number en">04 / ITINERARY</div>
-        <h3>旅行プラン・モデルコースの作り方</h3>
-        <p>日帰り旅行や1泊2日の旅行では、行きたい観光スポット、食事、移動時間、宿泊場所を整理すると、無理のない旅程を考えやすくなります。</p>
-        <a href="./travel-plan-making-guide.html" style="display:inline-block;margin-top:18px;color:#315f86;font-size:13px;font-weight:700;text-decoration:underline;">旅行プランの作り方を読む →</a>
+      <article class="travel-topic reveal">
+        <h3>日帰り・1泊2日の予定を組んでみる</h3>
+        <p>行きたい場所を詰め込みすぎず、移動や食事にかかる時間も考えて予定を立てるのがコツ。旅程づくりの基本を紹介します。</p>
+        <a href="./travel-plan-making-guide.html">旅行プランの作り方を読む →</a>
       </article>
-      <article class="feature-card reveal">
-        <div class="feature-number en">05 / DESTINATION</div>
-        <h3>旅行先・観光地の探し方</h3>
-        <p>行き先に迷ったら、出発地、旅行できる日数、予算、季節、興味のある体験から候補を整理。観光地や地域の見どころを調べて比較しましょう。</p>
-        <a href="https://tabi-hikaku.pages.dev/" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:18px;color:#315f86;font-size:13px;font-weight:700;text-decoration:underline;">旅比べで旅行先を検討する →</a>
-        <a href="./travel-destination-guide.html" style="display:inline-block;margin:10px 0 0;color:#315f86;font-size:13px;font-weight:700;text-decoration:underline;">国内旅行の行き先の決め方を読む →</a>
+      <article class="travel-topic reveal">
+        <h3>次の休みはどこへ行こう？行き先の探し方</h3>
+        <p>季節や日数、出発する場所、興味のあることから候補を探してみましょう。国内旅行の行き先を決めるヒントをまとめました。</p>
+        <a href="./travel-destination-guide.html">行き先の決め方を読む →</a>
+        <a href="https://tabi-hikaku.pages.dev/" target="_blank" rel="noopener noreferrer">旅比べで行き先を探す →</a>
       </article>
-      <article class="feature-card reveal">
-        <div class="feature-number en">06 / TOURISM BUSINESS</div>
-        <h3>観光施設・ホテルのWeb集客</h3>
-        <p>観光地、ホテル、旅館、飲食店、体験施設に向けて、Webサイトの情報整理、検索を意識したコンテンツ、SNSでの情報発信を検討します。</p>
-        <a href="./tourism-marketing-support.html" style="display:inline-block;margin-top:18px;color:#315f86;font-size:13px;font-weight:700;text-decoration:underline;">旅館・ホテル向けWeb集客支援を見る →</a>
-        <a href="./tourism-marketing-support.html#site-check" style="display:inline-block;margin:10px 0 0;color:#315f86;font-size:13px;font-weight:700;text-decoration:underline;">無料セルフチェックを試す →</a>
-        <a href="./local-page-studio.html" style="display:inline-block;margin:10px 0 0;color:#315f86;font-size:13px;font-weight:700;text-decoration:underline;">無料で施設案内ページを作成する →</a>
+      <article class="travel-topic reveal">
+        <h3>旅館や観光施設の情報発信について</h3>
+        <p>宿泊プランや施設の特徴が、訪れる人にきちんと伝わるサイトになっているか。AileronのWeb情報改善・集客支援について紹介します。</p>
+        <a href="./tourism-marketing-support.html">宿泊施設向けの支援内容を見る →</a>
       </article>
     </div>
-    <p style="max-width:900px;margin:34px auto 0;color:#687685;font-size:12px;line-height:2;text-align:center;">
-      ※交通機関の運賃・運行状況、宿泊料金、施設の営業時間・利用条件は時期や予約状況によって変わります。予約・購入前に各事業者の公式情報をご確認ください。Aileronの掲載情報は、すべての料金や空席・空室をリアルタイムで保証するものではありません。
+    <p class="travel-topics-note">
+      ※運賃・宿泊料金・営業時間・利用条件は変更されることがあります。予約や購入の前に、各事業者の公式情報をご確認ください。
     </p>
   </div>
 </section>
